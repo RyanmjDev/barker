@@ -14,58 +14,72 @@ export const navLinks =[
   {
     text: 'Home',
     icon: HomeIcon,
+    link: '/home'
   },
   {
-    text: 'Hashtags',
+    text: 'Explore',
     icon: HashtagIcon,
+    link: '/'
   },
   {
     text: 'Notifications',
     icon: BellIcon,
+    link: '/notifications'
   },
   {
     text: 'Messages',
     icon: EnvelopeIcon,
+    link: '/messages'
   },
   {
     text: 'Bookmarks',
     icon: BookmarkIcon,
+    link: '/bookmarks'
   },
   {
     text: 'Lists',
     icon: ListAltIcon,
+    link: '/'
   },
   {
     text: 'Profile',
     icon: UserIcon,
+    link: '/Profile'
   },
   {
     text: 'Settings',
     icon: SettingsIcon,
+    link: '/settings'
   },
 
 ];
+
 
 
 export const mobileNavLinks =[
   {
     text: 'Home',
     icon: HomeIcon,
+    link: '/home'
   },
   {
-    text: 'Hashtags',
+    text: 'Explore',
     icon: HashtagIcon,
+    link: '/'
   },
   {
     text: 'Notifications',
     icon: BellIcon,
+    link: '/notifications'
   },
   {
     text: 'Profile',
     icon: UserIcon,
+    link: '/profile'
   },
   {
     text: 'Messages',
     icon: EnvelopeIcon,
+    link: '/messages'
   },
 ]

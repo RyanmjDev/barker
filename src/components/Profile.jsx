@@ -3,11 +3,14 @@ import {IoArrowBack} from 'react-icons/io5';
 import Bark from './Bark';
 import Barklist from './Barklist';
 
+import {profileLinks} from '../utils/profileLinks'
+
+
 import '../App.css'
 
 const Profile = () => {
   return (
-    <div className="flex bg-white p-4 rounded-lg w-full max-w-2xl mx-auto my-4 ">
+    <div className="flex p-4 rounded-lg w-full max-w-2xl mx-auto my-4 ">
         <div className="flex flex-col items-start">
 
     {/* <div className='flex text-xl align-top'> <IoArrowBack/>     Night Sky Eikon</div> */}
@@ -38,13 +41,25 @@ const Profile = () => {
        <span className='hover:underline'><span className='font-bold'>12.5K</span> Followers</span>
        </div>
 
-       <div className="flex w-full justify-evenly mt-6">
-       <span className='profile-tab'>Barks</span>
+       
 
-        <span>Replies </span> 
-        <span>Media</span>  
-        <span>Likes</span> 
+
+
+    <div className="flex w-full justify-evenly mt-6">
+    {profileLinks.map((profileLink, index) => {
+      return(
+            <a href={profileLink.link} className="flex flex-col items-center justify-center w-1/5">
+               <span className='profile-tab'>{profileLink.text}</span>
+            </a>
+      )
+    })}
+         
+      
        </div>
+
+
+
+      
 
        <Barklist/>
 
