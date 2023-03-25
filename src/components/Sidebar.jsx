@@ -5,7 +5,13 @@ import { TbDog } from "react-icons/tb";
 import { BsThreeDots } from "react-icons/bs";
 import { FaPen } from "react-icons/fa";
 
+import axios from "axios";
+import {headers, profileURL} from '../utils/data'
+
+const CACHE_KEY = '_userdata';
+
 const Sidebar = () => {
+  const CACHE_KEY = 'barker_userdata';
   const [isSidebarOpen, setIsSidebarOpen] = useState(true);
 
   const toggleSidebar = () => {
@@ -28,6 +34,39 @@ const Sidebar = () => {
     };
   }, []);
 
+ 
+
+
+function useCachedUserData(url, headers) {
+  const [userData, setUserData] = useState(null);
+
+  useEffect(() => {
+    const cachedUserData = localStorage.getItem(CACHE_KEY);
+    if (cachedUserData) {
+      setUserData(JSON.parse(cachedUserData));
+    }
+   
+    const fetchUserData = async () => {
+      try {
+        const response = await axios.get(url, headers);
+        console.log('User data received:', response.data);
+        setUserData(response.data);
+        localStorage.setItem(CACHE_KEY, JSON.stringify(response.data));
+      } catch (err) {
+        console.error('Error fetching username:', err);
+      }
+    };
+
+    if (!cachedUserData) {
+      fetchUserData();
+    }
+  }, [url, headers]);
+
+  return userData;
+}
+
+const userData = useCachedUserData(profileURL, headers);
+  
   return (
     <>
       <button
@@ -48,9 +87,9 @@ const Sidebar = () => {
             <TbDog className="text-blue-400 text-3xl" />
           </div>
           <ul className="mt-4">
-            {navLinks.map((navLink) => {
+            {navLinks.map((navLink, index) => {
               return (
-                <li className="my-2">
+                <li className="my-2" key={index}>
                   <a
                     href={navLink.link}
                     className="flex items-center px-4 py-2 rounded-lg lg:hover:bg-blue-500 hover:text-white transition duration-300 ease-in-out md:justify-start"
@@ -82,7 +121,7 @@ const Sidebar = () => {
             <div className="hidden lg:block">
               <span className="font-bold">Night Sky Eikon</span>
               <br />
-              <span className="text-gray-500">@NightSkyPrince_</span>
+              <span className="text-gray-500">{userData}</span>
             </div>
 
             <BsThreeDots className="hidden ml-4 lg:block" />

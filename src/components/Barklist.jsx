@@ -1,9 +1,35 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import Bark from './Bark'
+import {allBarksURL} from '../utils/data'
 
-const Barklist = () => {
+import axios from 'axios';
 
-    const [barks, setBarks] = useState([<Bark/>, <Bark/>]);
+const Barklist =  () => {
+
+    const [barks, setBarks] = useState([]);
+
+    const fetchBarks = async () => {
+     await axios.get(allBarksURL)
+      .then((res)=> {
+         console.log(res.data)
+         const barklist = res.data;
+         setBarks(barklist.map((bark) => {
+            return(
+               <Bark key={bark.id} content={bark.content} user={bark.user.username} date={bark.createdAt}/>
+            )
+         }));
+
+      })
+      .catch((error) => {
+         console.log(error);
+      })
+
+    }
+
+
+useEffect(() => {
+   fetchBarks();
+}, [])
 
   return (
      <>

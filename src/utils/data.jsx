@@ -1,14 +1,15 @@
-// Used for testing purposes
+export const allBarksURL = 'http://localhost:3000/api/barks';
+export const loginURL = 'http://localhost:3000/api/users/login';
+export const profileURL = 'http://localhost:3000/api/users/profile';
 
-export const barksJson = [
-    {
-        id: 0,
-        username: "@NightSkyPrince_",
-        displayName: "Night Sky Eikon",
-        text: "Hello World!!!",
-        date: "1:28 PM · Mar 16, 2023",
-        rebarks: 34,
-        quoteBarks: 9,
-        likes: 200,
+
+import Cookies from "js-cookie";
+export const token = Cookies.get("token"); // Gets token for login
+export const headers = {
+    withCredentials: true,
+    headers: {
+      Authorization: `Bearer ${token}`,
+      "Content-Type": "application/json",
     },
-]
+  };
+  

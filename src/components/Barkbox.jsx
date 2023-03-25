@@ -41,7 +41,7 @@ const Barkbox = () => {
         />
         <div className="flex-grow">
           <textarea
-            className="w-full h-16 p-2 mb-2 text-lg text-gray-700 border-none outline-none resize-none"
+            className="w-full h-16 p-2 mb-2 text-lg border-none outline-none resize-none"
             placeholder="What's happening?"
             value={barkText}
             onChange={handleChange}

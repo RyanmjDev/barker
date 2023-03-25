@@ -2,9 +2,10 @@ import React from 'react';
 import {  BsThreeDots } from 'react-icons/bs';
 import Divider from './Divider';
 import Reaction from './Reaction';
+import formatDate from '../utils/formatDate'
 
 
-const Bark = () => {
+const Bark = ({content, user, date}) => {
   return (
     <div className="rounded-lg w-full max-w-2xl mx-auto my-2 ">
       <Divider/>
@@ -20,16 +21,16 @@ const Bark = () => {
             <a href="#" className="font-bold hover:underline truncate">
               Night Sky Eikon
             </a>
-            <span className="text-gray-500 ml-2">@NightSkyPrince</span>
+            <span className="text-gray-500 ml-2">{`@${user}`}</span>
             <span className="text-gray-500 mx-2">·</span>
-            <span className="text-gray-500">2h</span>
+            <span className="text-gray-500">{formatDate(date)}</span>
             <div className="flex ml-auto">
               <BsThreeDots/>
             </div>
           </div>
 
           <p className="mt-2 mb-2 text-md">
-            Hello World! This is my Twitter clone, Barker! WOOF-WOOF
+           {content}
           </p>
         </div>
       </div>

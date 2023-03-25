@@ -58,26 +58,31 @@ export const navLinks =[
 
 export const mobileNavLinks =[
   {
+    id: 0,
     text: 'Home',
     icon: HomeIcon,
     link: '/home'
   },
   {
+    id: 1,
     text: 'Explore',
     icon: HashtagIcon,
     link: '/'
   },
   {
+    id: 2,
     text: 'Notifications',
     icon: BellIcon,
     link: '/notifications'
   },
   {
+    id: 3,
     text: 'Profile',
     icon: UserIcon,
     link: '/profile'
   },
   {
+    id: 4,
     text: 'Messages',
     icon: EnvelopeIcon,
     link: '/messages'

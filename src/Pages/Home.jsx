@@ -1,7 +1,7 @@
 import React from 'react'
 import { FaHome } from 'react-icons/fa'
-import Bark from '../components/Bark'
 import Barkbox from '../components/Barkbox'
+import Barklist from '../components/Barklist'
 
 const Home = () => {
   return (
@@ -12,12 +12,7 @@ const Home = () => {
         <hr className="my-4" />
  </div>
     <Barkbox/>
-
-    <Bark/>
-    <Bark/>
-    <Bark/>
-    <Bark/>
-    <Bark/>
+    <Barklist/>
 
    
     </>
