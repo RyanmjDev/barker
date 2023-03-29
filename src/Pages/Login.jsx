@@ -1,19 +1,21 @@
 import React, { useEffect } from 'react';
 import axios from 'axios';
 import Cookies from "js-cookie";
-import { loginURL } from '../utils/data';
+import { loginURL, clearCachedUserData } from '../utils/data';
 
 const Login = () => {
+
+
   const handleSubmit = async (event) => {
     event.preventDefault();
     const formData = new FormData(event.target.form);
     const email = formData.get('email');
     const password = formData.get('password');
-
+    clearCachedUserData();
     try {
+
       const res = await axios.post(loginURL, { email, password });
       const token = res.data.token;
-
       Cookies.set("token", token, { expires: 1 });
       axios.defaults.headers.common['Authorization'] = `Bearer ${token}`;
       window.location.href = '/';

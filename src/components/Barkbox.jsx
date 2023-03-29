@@ -1,10 +1,15 @@
 import React from 'react';
+import axios from 'axios';
 import { useState } from 'react';
 import { BiImageAdd } from 'react-icons/bi';
 import { GrEmoji } from 'react-icons/gr';
 import EmojiPicker, {Emoji} from 'emoji-picker-react';
-
+import { allBarksURL, headers } from '../utils/data';
 import '../App.css'
+
+
+import Cookies from "js-cookie";
+
 
 const Barkbox = () => {
   const [barkText, setBarkText] = useState('');
@@ -16,8 +21,35 @@ const Barkbox = () => {
     event.target.style.height = event.target.scrollHeight + 'px';
   };
 
-  const handleBark = () => {
-    // TODO: handle Bark submission
+  const handleBark = async (event) => {
+    event.preventDefault();
+
+  const token = Cookies.get("token"); // Gets token for login
+  const headers = {
+    withCredentials: true,
+    headers: {
+      Authorization: `Bearer ${token}`,
+      "Content-Type": "application/json",
+    },
+  };
+  
+    try{
+    await axios
+    .post(allBarksURL,
+    {
+      content: barkText 
+    },
+    headers)
+    .then(response => {
+      // Empty the Text Box
+      setBarkText('');
+    })
+    
+  } catch (error) {
+    console.error('Error creating bark:', error);
+  }
+
+     
   };
 
  const handleEmojiClick = (event, emojiObject) => {

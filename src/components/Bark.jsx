@@ -2,12 +2,19 @@ import React from 'react';
 import {  BsThreeDots } from 'react-icons/bs';
 import Divider from './Divider';
 import Reaction from './Reaction';
-import formatDate from '../utils/formatDate'
+import {timeSince} from '../utils/formatDate'
+import { allBarksURL } from '../utils/data';
 
 
-const Bark = ({content, user, date}) => {
+const Bark = ({barkId, content, user, date, likes}) => {
+
+ const handleClick = (event) => {
+  event.preventDefault();
+  window.location.href = `/bark/${barkId}`;
+ }
+  
   return (
-    <div className="rounded-lg w-full max-w-2xl mx-auto my-2 ">
+    <div className="rounded-lg w-full max-w-2xl mx-auto my-2 " onClick={handleClick}>
       <Divider/>
       <div className="flex items-start">
         <img
@@ -23,7 +30,7 @@ const Bark = ({content, user, date}) => {
             </a>
             <span className="text-gray-500 ml-2">{`@${user}`}</span>
             <span className="text-gray-500 mx-2">·</span>
-            <span className="text-gray-500">{formatDate(date)}</span>
+            <span className="text-gray-500">{timeSince(date)}</span>
             <div className="flex ml-auto">
               <BsThreeDots/>
             </div>
@@ -35,10 +42,11 @@ const Bark = ({content, user, date}) => {
         </div>
       </div>
 
-      <Reaction/>
+      <Reaction barkId={barkId} likes={likes}/>
 
       
     </div>
+ 
   );
 };
 

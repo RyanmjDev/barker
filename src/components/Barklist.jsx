@@ -1,8 +1,10 @@
 import React, { useEffect, useState } from 'react'
 import Bark from './Bark'
-import {allBarksURL} from '../utils/data'
 
+import {allBarksURL} from '../utils/data'
 import axios from 'axios';
+
+
 
 const Barklist =  () => {
 
@@ -14,8 +16,10 @@ const Barklist =  () => {
          console.log(res.data)
          const barklist = res.data;
          setBarks(barklist.map((bark) => {
+            
             return(
-               <Bark key={bark.id} content={bark.content} user={bark.user.username} date={bark.createdAt}/>
+               <Bark barkId={bark._id} content={bark.content} user={bark.user.username} date={bark.createdAt}
+               likes={bark.likes.length}/>
             )
          }));
 

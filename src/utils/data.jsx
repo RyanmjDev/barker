@@ -13,3 +13,7 @@ export const headers = {
     },
   };
   
+  export const CACHE_KEY = 'barker_userdata';
+  export const clearCachedUserData = () => {
+    localStorage.removeItem(CACHE_KEY);
+  }

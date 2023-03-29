@@ -1,11 +1,13 @@
-import React from 'react'
+import React, {useEffect} from 'react'
 import Reaction from './Reaction'
 import Divider from './Divider'
 import Barkbox from './Barkbox'
 import Bark from './Bark'
+import axios from 'axios'
+import { formatDate } from '../utils/formatDate'
 
+const HighlightedBark = ({barkId, bark}) => {
 
-const HighlightedBark = () => {
   return (
     <div className="p-4 rounded-lg w-full max-w-2xl mx-auto my-4 ">
       <div className="flex items-start">
@@ -16,22 +18,21 @@ const HighlightedBark = () => {
         />
             <div className="flex flex-col">
                 <span className='font-semibold'>Night Sky Eikon</span>
-                <span className="text-gray-500">@NightSkyPrince_</span>
+                <span className="text-gray-500">@{bark?.user?.username}</span>
             </div>
          </div>
 
          <div className='text-2xl mt-2'>
-            Lorem, ipsum dolor sit amet consectetur adipisicing elit. 
-            Laborum voluptatum, veritatis earum nisi sapiente aut numquam nobis ad accusamus sed illo perferendis magni rerum, neque sint, cum esse corrupti obcaecati.
+           {bark.content}
         </div>
 
-      <div className='text-muted mt-2 '>1:28 PM · Mar 16, 2023</div>  
+      <div className='text-muted mt-2 '> {formatDate(bark.createdAt)}</div>  
 
        <Divider/>
         <div class="reactions">
             <span className='hover:underline pr-6'>  <span className='font-bold'>65 </span>Rebarks</span>
             <span className='hover:underline pr-6'>  <span className='font-bold'>4 </span> Quotes</span>
-            <span className='hover:underline'>  <span className='font-bold'>420 </span> Likes</span>
+            <span className='hover:underline'>  <span className='font-bold'> {bark.likes && bark.likes.length} </span>  Likes</span>
         </div>
         <Divider/>
 
@@ -40,7 +41,7 @@ const HighlightedBark = () => {
 
         <Barkbox/>
 
-    
+
          
         </div>
 

@@ -1,6 +1,6 @@
 import moment from 'moment';
 
-export default function formatDate(dateString) {
+export function timeSince(dateString) {
   const date = moment(dateString);
   const now = moment();
   const duration = moment.duration(now.diff(date));
@@ -12,5 +12,12 @@ export default function formatDate(dateString) {
   } else {
     return `${Math.round(duration.asDays())}d`;
   }
-}
+};
 
+
+export function formatDate(dateString) {
+  const date = new Date(dateString);
+  const time = date.toLocaleTimeString([], { hour: 'numeric', minute: '2-digit' });
+  const dateStr = date.toLocaleDateString([], { month: 'short', day: 'numeric', year: 'numeric' });
+  return(`${time} · ${dateStr}`);
+};

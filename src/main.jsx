@@ -10,9 +10,10 @@ import NotificationsPage from './Pages/NotificationPage';
 import MessagePage from './Pages/MessagePage';
 import BookmarkPage from './Pages/BookmarkPage';
 import SettingsPage from './Pages/SettingsPage';
-
+import HLBarkPage from './Pages/HLBarkPage';
 
 import './index.css'
+
 
 
 
@@ -31,6 +32,7 @@ ReactDOM.createRoot(document.getElementById('root')).render(
           <Route path="notifications" element={<NotificationsPage />} />
           <Route path="messages" element={<MessagePage />} />
           <Route path="profile" element={<ProfilePage />} />
+          <Route path="/bark/:barkId" element={<HLBarkPage/>} />
           <Route path="bookmarks" element={<BookmarkPage />} />
           <Route path="settings" element={<SettingsPage />} />
           {/* <Route path="*" element={<NotFound />} /> */}

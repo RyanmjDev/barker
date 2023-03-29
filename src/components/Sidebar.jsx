@@ -6,12 +6,11 @@ import { BsThreeDots } from "react-icons/bs";
 import { FaPen } from "react-icons/fa";
 
 import axios from "axios";
-import {headers, profileURL} from '../utils/data'
+import {headers, profileURL, CACHE_KEY} from '../utils/data'
 
-const CACHE_KEY = '_userdata';
 
 const Sidebar = () => {
-  const CACHE_KEY = 'barker_userdata';
+  // const CACHE_KEY = 'barker_userdata';
   const [isSidebarOpen, setIsSidebarOpen] = useState(true);
 
   const toggleSidebar = () => {
