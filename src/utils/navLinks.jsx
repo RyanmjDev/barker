@@ -1,16 +1,20 @@
 import { FaHome, FaHashtag, FaBell, FaEnvelope, FaBookmark, FaListAlt, FaUser } from 'react-icons/fa';
 import {IoMdSettings} from 'react-icons/io'
 
+
 const HomeIcon = <FaHome size={24} className='mr-4 '/>;
 const HashtagIcon = <FaHashtag size={24}  className='mr-4' />;
 const BellIcon = <FaBell size={24}  className='mr-4' />;
 const EnvelopeIcon = <FaEnvelope size={24}  className='mr-4' />;
 const BookmarkIcon = <FaBookmark size={24}  className='mr-4' />;
 const ListAltIcon = <FaListAlt size={24}  className='mr-4'/>;
-const UserIcon = <FaUser size={24}  className='mr-4' />;
 const SettingsIcon = <IoMdSettings size={24}  className='mr-4'/>;
+const UserIcon = <FaUser size={24}  className='mr-4' />;
 
-export const navLinks =[
+
+
+export const generateNavLinks = (username) => {
+ const navLinks =[
   {
     text: 'Home',
     icon: HomeIcon,
@@ -42,9 +46,9 @@ export const navLinks =[
     link: '/'
   },
   {
-    text: 'Profile',
+    text: "Profile",
     icon: UserIcon,
-    link: '/Profile'
+    link: `/profile/${username}`
   },
   {
     text: 'Settings',
@@ -54,9 +58,13 @@ export const navLinks =[
 
 ];
 
+return navLinks;
 
+};
 
-export const mobileNavLinks =[
+export const generateBottomNavLinks = (username) => {
+
+  const bottomNavLinks =[
   {
     id: 0,
     text: 'Home',
@@ -79,12 +87,15 @@ export const mobileNavLinks =[
     id: 3,
     text: 'Profile',
     icon: UserIcon,
-    link: '/profile'
+    link: `/profile/${username}`
   },
   {
     id: 4,
-    text: 'Messages',
-    icon: EnvelopeIcon,
-    link: '/messages'
+    text: 'Settings',
+    icon: SettingsIcon,
+    link: '/settings'
   },
 ]
+
+    return bottomNavLinks;
+}

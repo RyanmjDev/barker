@@ -1,6 +1,8 @@
 export const allBarksURL = 'http://localhost:3000/api/barks';
 export const loginURL = 'http://localhost:3000/api/users/login';
-export const profileURL = 'http://localhost:3000/api/users/profile';
+export const usersURL = 'http://localhost:3000/api/users/';
+export const profileURL = 'http://localhost:3000/api/users/profile/';
+
 
 
 import Cookies from "js-cookie";

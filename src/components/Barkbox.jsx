@@ -9,9 +9,10 @@ import '../App.css'
 
 
 import Cookies from "js-cookie";
+import AtLink from './AtLink';
 
 
-const Barkbox = () => {
+const Barkbox = ({replyTo, replyId}) => {
   const [barkText, setBarkText] = useState('');
   const [emojiOpen, setEmojiOpen] = useState(false);
 
@@ -34,8 +35,12 @@ const Barkbox = () => {
   };
   
     try{
-    await axios
-    .post(allBarksURL,
+      
+      // If we're replying, use the Reply route. Otherwise, we're just posting a normal bark
+      const url = replyTo ?  `${allBarksURL}/${replyId}` : allBarksURL;
+    
+      await axios
+    .post(url,
     {
       content: barkText 
     },
@@ -48,7 +53,6 @@ const Barkbox = () => {
   } catch (error) {
     console.error('Error creating bark:', error);
   }
-
      
   };
 
@@ -65,6 +69,13 @@ const Barkbox = () => {
 
   return (
     <div className="p-2 rounded-lg w-full max-w-2xl mx-auto my-4 relative">
+         
+         {replyTo && (
+  <div className="flex flex-box ml-16">
+    <span>Replying To&nbsp;</span>
+    <AtLink username={replyTo} />
+  </div>
+)}
       <div className="flex items-start">
         <img
           className="w-12 h-12 rounded-full mr-4"
@@ -72,6 +83,7 @@ const Barkbox = () => {
           alt="Profile"
         />
         <div className="flex-grow">
+     
           <textarea
             className="w-full h-16 p-2 mb-2 text-lg border-none outline-none resize-none"
             placeholder="What's happening?"

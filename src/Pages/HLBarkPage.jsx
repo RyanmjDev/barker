@@ -4,6 +4,9 @@ import HighlightedBark from '../components/HighlightedBark';
 import { allBarksURL } from '../utils/data';
 import axios from 'axios';
 
+import Barkbox from '../components/Barkbox'
+import Barklist from '../components/Barklist'
+
 const HLBarkPage = () => {
   const { barkId } = useParams();
   const [bark, setBark] = useState({});
@@ -20,6 +23,7 @@ const HLBarkPage = () => {
       }
     };
 
+
     fetchBark();
   }, []);
 
@@ -31,7 +35,13 @@ const HLBarkPage = () => {
 
   return (
     <>
-      <HighlightedBark barkId={barkId} bark={bark} />
+      <HighlightedBark barkId={barkId} bark={bark}  />
+
+      {bark.user?.username &&
+        <Barkbox replyTo={bark.user.username} replyId={barkId}/>
+      } 
+
+      {barkId &&  <Barklist type="replies" barkId={barkId}/>}
     </>
   );
 };

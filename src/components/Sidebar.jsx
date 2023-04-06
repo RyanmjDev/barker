@@ -1,21 +1,32 @@
-import React, { useEffect, useState } from "react";
-import { navLinks } from "../utils/navLinks";
+import React, { useEffect, useState, useContext } from "react";
+import { generateNavLinks } from "../utils/navLinks";
 import { TbDog } from "react-icons/tb";
 
 import { BsThreeDots } from "react-icons/bs";
 import { FaPen } from "react-icons/fa";
 
 import axios from "axios";
-import {headers, profileURL, CACHE_KEY} from '../utils/data'
+
+import { Link, useLocation } from 'react-router-dom';
+
+import UserContext from "../context/UserContext";
+
+
 
 
 const Sidebar = () => {
-  // const CACHE_KEY = 'barker_userdata';
-  const [isSidebarOpen, setIsSidebarOpen] = useState(true);
 
+const userData = useContext(UserContext);
+const navLinks = generateNavLinks(userData);
+const location = useLocation();
+
+  const [isSidebarOpen, setIsSidebarOpen] = useState(window.innerWidth >= 768);
+ 
   const toggleSidebar = () => {
     setIsSidebarOpen(!isSidebarOpen);
   };
+
+
 
   useEffect(() => {
     const handleResize = () => {
@@ -34,37 +45,6 @@ const Sidebar = () => {
   }, []);
 
  
-
-
-function useCachedUserData(url, headers) {
-  const [userData, setUserData] = useState(null);
-
-  useEffect(() => {
-    const cachedUserData = localStorage.getItem(CACHE_KEY);
-    if (cachedUserData) {
-      setUserData(JSON.parse(cachedUserData));
-    }
-   
-    const fetchUserData = async () => {
-      try {
-        const response = await axios.get(url, headers);
-        console.log('User data received:', response.data);
-        setUserData(response.data);
-        localStorage.setItem(CACHE_KEY, JSON.stringify(response.data));
-      } catch (err) {
-        console.error('Error fetching username:', err);
-      }
-    };
-
-    if (!cachedUserData) {
-      fetchUserData();
-    }
-  }, [url, headers]);
-
-  return userData;
-}
-
-const userData = useCachedUserData(profileURL, headers);
   
   return (
     <>
@@ -77,33 +57,39 @@ const userData = useCachedUserData(profileURL, headers);
       {isSidebarOpen && (
         <div
           className={`w-16 lg:w-60 min-h-screen fixed top-0 
-  left-0 xl:left-80 lg:ml-56 xl:ml-28 overflow-y-auto transition-all duration-300
-   ${
-     isSidebarOpen ? "opacity-100 translate-x-0" : "opacity-0 translate-x-full"
-   }`}
-        >
+            left-0 xl:left-80 lg:ml-56 xl:ml-28 overflow-y-auto transition-all duration-300
+            ${
+              isSidebarOpen ? "opacity-100 translate-x-0" : "opacity-0 translate-x-full"
+            }`}
+                  >
           <div className="flex items-center justify-left ml-4 h-16">
             <TbDog className="text-blue-400 text-3xl" />
           </div>
+
           <ul className="mt-4">
-            {navLinks.map((navLink, index) => {
-              return (
-                <li className="my-2" key={index}>
-                  <a
-                    href={navLink.link}
-                    className="flex items-center px-4 py-2 rounded-lg lg:hover:bg-blue-500 hover:text-white transition duration-300 ease-in-out md:justify-start"
-                  >
-                    <span className="mr-2 md:hover:text-blue-500">
-                      {navLink.icon}
-                    </span>
-                    <span className="hidden text-xl lg:inline">
-                      {navLink.text}
-                    </span>
-                  </a>
-                </li>
-              );
-            })}
-          </ul>
+        {navLinks.map((navLink, index) => {
+          const isActive = location.pathname === navLink.link;
+          return (
+            <li
+              className={`my-2 ${
+                isActive ? "font-bold" : ""
+              }`}
+              key={index}
+            >
+              <Link
+                to={navLink.link}
+                className="flex items-center px-4 py-2 rounded-lg lg:hover:bg-blue-500 hover:text-white transition duration-300 ease-in-out md:justify-start"
+              >
+                <span className="mr-2 md:hover:text-blue-500">
+                  {navLink.icon}
+                </span>
+                <span className="hidden text-xl lg:inline">{navLink.text}</span>
+              </Link>
+            </li>
+          );
+        })}
+      </ul>
+
           <div className="flex ml-2">
             <button className="w-2/3 font-bold flex items-center justify-center border-b bg-blue-400 hover:bg-blue-500 text-white py-2 px-4 mt-8 rounded-full">
               <FaPen className="block lg:hidden" />{" "}

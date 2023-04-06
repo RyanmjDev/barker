@@ -1,14 +1,56 @@
-import React from 'react'
+import React, { useState, useEffect, useContext } from 'react'
 import {IoArrowBack} from 'react-icons/io5';
 import Bark from './Bark';
 import Barklist from './Barklist';
+import Cookies from "js-cookie";
 
 import {profileLinks} from '../utils/profileLinks'
+import {profileURL} from '../utils/data'
 
 
 import '../App.css'
+import axios from 'axios';
+import { useParams } from 'react-router-dom';
+import UserContext from "../context/UserContext";
 
 const Profile = () => {
+  const userData = useContext(UserContext);
+  const [profileUser, setProfileUser] = useState('');
+  const [profile, setProfile] = useState('');
+  const {username} = useParams();
+
+  const fetchProfile = async () => {
+    const token = Cookies.get("token"); // Gets token for login
+    const headers = {
+       withCredentials: true,
+       headers: {
+         Authorization: `Bearer ${token}`,
+         "Content-Type": "application/json",
+       },
+     };
+
+  
+     try {
+      await axios.get(`${profileURL}${username}`, headers)
+      .then((res) => {
+        console.log(res.data)
+          setProfile(res.data.profile);
+          setProfileUser(res.data.username)
+      })
+    }
+    catch(error) {
+      console.log(error);
+    }
+
+
+    }
+
+    useEffect(() => {
+      fetchProfile();
+   }, [])
+   
+
+
   return (
     <div className="flex p-4 rounded-lg w-full max-w-2xl mx-auto my-4 ">
         <div className="flex flex-col items-start">
@@ -25,15 +67,23 @@ const Profile = () => {
             src="https://pbs.twimg.com/profile_images/1564774195019632640/EYZ42tpe_400x400.jpg"
             alt="Profile"
           />
+
+          
+            {userData === profileUser ?
+             <button className="bg-gray-500 hover:bg-gray-700 text-white font-bold py-2 px-4 rounded-full w-20 h-10 mr-8 mt-8">
+              Edit
+             </button>
+             :
             <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full w-20 h-10 mr-8 mt-8">
-            Follow
-          </button>
+              Follow
+          </button> }
+
           </div>
          <span className='text-2xl font-semibold'>Night Sky Eikon</span>
-         <span className="text-gray-500">@NightSkyPrince_</span>
+         <span className="text-gray-500">@{profileUser}</span>
 
        <div className="mt-2">
-       YouTube & Twitch Partner - Final Fantasy & JRPG Content Creator! For business inquiries: Ryan.M.Johnson91@gmail.com
+      {profile}
        </div>
 
        <div className="flex mt-2">
@@ -48,7 +98,8 @@ const Profile = () => {
     <div className="flex w-full justify-evenly mt-6">
     {profileLinks.map((profileLink, index) => {
       return(
-            <a href={profileLink.link} className="flex flex-col items-center justify-center w-1/5">
+            <a href={profileLink.link} className="flex flex-col items-center justify-center w-1/5"
+            key={index}>
                <span className='profile-tab'>{profileLink.text}</span>
             </a>
       )
@@ -61,7 +112,7 @@ const Profile = () => {
 
       
 
-       <Barklist/>
+       <Barklist type="user" username={username}/>
 
        
             </div>

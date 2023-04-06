@@ -1,5 +1,5 @@
 
-
+import React, { useEffect, useState, createContext, useContext } from "react";
 import Barkbox from './components/Barkbox';
 import Sidebar from './components/Sidebar';
 import Bark from './components/Bark';
@@ -11,21 +11,33 @@ import HighlightedBark from './components/HighlightedBark';
 import VerticalDivider from './components/VerticalDivider';
 import { Outlet } from 'react-router-dom';
 
+import {headers, usersURL, CACHE_KEY} from './utils/data'
+import axios from "axios";
+
+import UserContext from "./context/UserContext";
+import useCachedUserData from "./hooks/useCachedUserData";
+
+import BarkboxModal from "./components/BarkboxModal";
+
 
 
 function App() {
 
+ 
+  const userData = useCachedUserData(usersURL, headers, CACHE_KEY);
 
   return (
     <>
-    <div className="flex flex-col md:flex-row">
-      <div className="flex-initial">
-        <Sidebar />
-        <BottomNavbar />
-      </div>
-    </div>
-    
+    <UserContext.Provider value={userData}>
+          <div className="flex flex-col md:flex-row">
+            <div className="flex-initial">
+                <Sidebar/>
+                <BottomNavbar/>
+            </div>
+          </div>
          <Outlet/>
+   
+         </UserContext.Provider>
     </>
   );
 }

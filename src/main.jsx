@@ -31,7 +31,7 @@ ReactDOM.createRoot(document.getElementById('root')).render(
           <Route path="home" element={<Home />} />
           <Route path="notifications" element={<NotificationsPage />} />
           <Route path="messages" element={<MessagePage />} />
-          <Route path="profile" element={<ProfilePage />} />
+          <Route path="/profile/:username" element={<ProfilePage />} />
           <Route path="/bark/:barkId" element={<HLBarkPage/>} />
           <Route path="bookmarks" element={<BookmarkPage />} />
           <Route path="settings" element={<SettingsPage />} />

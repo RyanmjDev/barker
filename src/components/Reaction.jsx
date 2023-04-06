@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { BsChat, BsShare } from 'react-icons/bs'
 import { AiOutlineRetweet, AiFillHeart, AiOutlineHeart } from 'react-icons/ai'
 import {RxBookmark, RxBookmarkFilled} from 'react-icons/rx'
@@ -8,9 +8,11 @@ import Cookies from "js-cookie";
 import axios from 'axios';
 
 
-const Reaction = ({barkId, size, likes}) => {
+const Reaction = ({barkId, size, likes, isLikedByUser, replies}) => {
+  const [userLiked, setUserLiked] = useState(isLikedByUser);
 
-  const handleLike = async () => {
+  const handleLike = async (event) => {
+    event.stopPropagation();
     const token = Cookies.get("token"); // Gets token for login
     const headers = {
       withCredentials: true,
@@ -19,19 +21,23 @@ const Reaction = ({barkId, size, likes}) => {
         "Content-Type": "application/json",
       },
     };
-    
-      try{
+  
+    try {
       await axios
-      .post(`${allBarksURL}/${barkId}/like`, {}, headers)
-      .then(response => {
-        console.log("liked the bark!")
-      })
-      
+        .post(`${allBarksURL}/${barkId}/like`, {}, headers)
+        .then((response) => {
+          console.log("liked the bark!");
+          setUserLiked(!userLiked);
+          event.target.classList.add('like-animation'); // Add CSS class to heart icon
+          event.target.addEventListener('animationend', () => {
+            event.target.classList.remove('like-animation'); // Remove CSS class after animation is finished
+          });
+        });
     } catch (error) {
       console.error('Error like bark:', error);
     }
+  };
   
-  }
 
 
   return (
@@ -42,7 +48,7 @@ const Reaction = ({barkId, size, likes}) => {
 
     <div className='flex items-center'>
     <BsChat className="mr-3 text-gray-500 hover:text-blue-500"/>
-    <span className="text-gray-500 hover:text-blue-500">27</span> 
+    <span className="text-gray-500 hover:text-blue-500">{replies}</span> 
   </div>
 
       <div className='flex items-center'>
@@ -51,7 +57,9 @@ const Reaction = ({barkId, size, likes}) => {
       </div>
 
       <div className='flex items-center' onClick={handleLike}>
-        <AiOutlineHeart className="mr-3 text-gray-500 hover:text-red-500" />
+        {userLiked ? <AiFillHeart className='className="mr-3 text-red-500'/>
+        : <AiOutlineHeart className="mr-3 text-gray-500 hover:text-red-500" />
+        }
         <span className="mr-6">{likes}</span>
       </div>
 
