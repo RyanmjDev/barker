@@ -1,19 +1,22 @@
 export const profileLinks = [
     {
-        text: "Barks",
-        link: "#"
+      text: "Barks",
+      type: "user",
+      link: "#",
     },
     {
-        text: "Replies",
-        link: "#"
+      text: "Replies",
+      type: "userReplies",
+      link: "#",
     },
     {
-        text: "Media",
-        link: "#"
+      text: "Media",
+      type: "media",
+      link: "#",
     },
     {
-        text: "Likes",
-        link: "#"
+      text: "Likes",
+      type: "likes",
+      link: "#",
     },
-  ]
-  
+  ];

@@ -63,7 +63,10 @@ const HighlightedBark = ({barkId, bark}) => {
         </div>
         <Divider/>
 
-        <Reaction size="large"/>
+ 
+     <Reaction size="large" barkId={barkId}  isLikedByUser={bark ? bark.isLikedByUser : false} /> 
+
+
         <Divider/>
 
  

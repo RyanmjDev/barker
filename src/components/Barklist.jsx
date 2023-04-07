@@ -19,6 +19,11 @@ const Barklist =  ({type, username, barkId}) => {
 
          case "replies":
             return `${allBarksURL}/${barkId}/replies`
+            break;
+         
+         case "likes":
+            return `${usersURL}/${username}/likes`;
+            break;
 
          default: 
          return allBarksURL;
@@ -36,8 +41,6 @@ const Barklist =  ({type, username, barkId}) => {
        };
 
   
- 
-        // const url = username ?  `${usersURL}/${username}/barks` : allBarksURL;
 
      await axios.get(getUrlByType(), headers)
       .then((res)=> {
