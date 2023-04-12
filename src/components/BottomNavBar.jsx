@@ -8,16 +8,24 @@ import { Link, useLocation } from 'react-router-dom';
 import { useContext } from 'react';
 
 import UserContext from "../context/UserContext";
+import { FaPen } from "react-icons/fa";
 
 
 
-const BottomNavbar = () => {
+const BottomNavbar = ({onBarkButtonClick}) => {
   const userData = useContext(UserContext)
   const bottomNavLinks = generateBottomNavLinks(userData);
   const location = useLocation();
 
   return (
+    <>
+
     <nav className="fixed bottom-0 left-0 w-full h-16 bg-white border-t flex justify-around md:hidden">
+           <button
+        className="fixed rounded-full h-12 w-12 pl-4 bg-blue-400 bottom-24 right-4"
+        onClick={onBarkButtonClick}>
+       <FaPen/>
+      </button>
       {bottomNavLinks.map((navLink, index) => {
         const isActive = location.pathname === navLink.link;
         return (
@@ -36,6 +44,7 @@ const BottomNavbar = () => {
         );
       })}
     </nav>
+    </>
   );
 };
 

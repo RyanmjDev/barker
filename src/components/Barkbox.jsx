@@ -12,7 +12,7 @@ import Cookies from "js-cookie";
 import AtLink from './AtLink';
 
 
-const Barkbox = ({replyTo, replyId}) => {
+const Barkbox = ({replyTo, replyId, closeModal}) => {
   const [barkText, setBarkText] = useState('');
   const [emojiOpen, setEmojiOpen] = useState(false);
 
@@ -48,6 +48,7 @@ const Barkbox = ({replyTo, replyId}) => {
     .then(response => {
       // Empty the Text Box
       setBarkText('');
+      closeModal();
     })
     
   } catch (error) {

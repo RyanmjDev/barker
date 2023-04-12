@@ -42,7 +42,6 @@ const Reaction = ({ barkId, size, likes, isLikedByUser, replies }) => {
     }
   };
 
-  console.log(isLikedByUser)
 
   return (
     <div

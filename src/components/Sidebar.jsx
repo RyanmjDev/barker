@@ -10,17 +10,19 @@ import axios from "axios";
 import { Link, useLocation } from 'react-router-dom';
 
 import UserContext from "../context/UserContext";
+import BarkboxModal from "./BarkboxModal";
 
 
 
 
-const Sidebar = () => {
+const Sidebar = ({onBarkButtonClick}) => {
 
 const userData = useContext(UserContext);
 const navLinks = generateNavLinks(userData);
 const location = useLocation();
 
-  const [isSidebarOpen, setIsSidebarOpen] = useState(window.innerWidth >= 768);
+const [isSidebarOpen, setIsSidebarOpen] = useState(window.innerWidth >= 768); 
+
  
   const toggleSidebar = () => {
     setIsSidebarOpen(!isSidebarOpen);
@@ -44,7 +46,7 @@ const location = useLocation();
     };
   }, []);
 
- 
+
   
   return (
     <>
@@ -91,7 +93,8 @@ const location = useLocation();
       </ul>
 
           <div className="flex ml-2">
-            <button className="w-2/3 font-bold flex items-center justify-center border-b bg-blue-400 hover:bg-blue-500 text-white py-2 px-4 mt-8 rounded-full">
+            <button className="w-2/3 font-bold flex items-center justify-center border-b bg-blue-400 hover:bg-blue-500 text-white py-2 px-4 mt-8 rounded-full"
+            onClick={onBarkButtonClick}>
               <FaPen className="block lg:hidden" />{" "}
               <span className="hidden lg:block">Bark</span>
             </button>
@@ -113,6 +116,8 @@ const location = useLocation();
           </div>
         </div>
       )}
+
+
     </>
   );
 };
