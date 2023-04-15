@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect, useRef, useContext } from 'react';
 import { BsChat, BsShare } from 'react-icons/bs';
 import { AiOutlineRetweet, AiFillHeart, AiOutlineHeart } from 'react-icons/ai';
 import { RxBookmark } from 'react-icons/rx';
@@ -7,9 +7,15 @@ import { allBarksURL } from '../utils/data';
 import Cookies from 'js-cookie';
 import axios from 'axios';
 
-const Reaction = ({ barkId, size, likes, isLikedByUser, replies }) => {
+import BarkboxModalContext from "../context/BarkboxModalContext";
+
+
+const Reaction = ({ barkId, content, size, likes,  user, date, isLikedByUser, replies }) => {
+
   const [userLiked, setUserLiked] = useState(isLikedByUser);
   const [postLikes, setPostLikes] = useState(likes);
+
+  const { openBarkboxModal } = useContext(BarkboxModalContext);
 
   const heartRef = useRef(null);
 
@@ -33,15 +39,21 @@ const Reaction = ({ barkId, size, likes, isLikedByUser, replies }) => {
       console.log('liked the bark!');
       setUserLiked(!userLiked);
       userLiked ? setPostLikes(postLikes - 1) : setPostLikes(postLikes + 1);
+      
       heartRef.current.classList.add('like-animation');
       heartRef.current.addEventListener('animationend', () => {
-        heartRef.current.classList.remove('like-animation');
+      heartRef.current.classList.remove('like-animation');
       });
     } catch (error) {
       console.error('Error like bark:', error);
     }
   };
 
+  const handleReply = (event) => {
+    event.stopPropagation();
+    openBarkboxModal({barkId: barkId, content: content, user: user, date: date})
+    //openBarkboxModal(content});
+  }
 
   return (
     <div
@@ -50,7 +62,7 @@ const Reaction = ({ barkId, size, likes, isLikedByUser, replies }) => {
       }`}
     >
       <div className='flex items-center'>
-        <BsChat className='mr-3 text-gray-500 hover:text-blue-500' />
+        <BsChat className='mr-3 text-gray-500 hover:text-blue-500' onClick={handleReply}/>
         <span className='text-gray-500 hover:text-blue-500'>{replies}</span>
       </div>
 

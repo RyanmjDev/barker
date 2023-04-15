@@ -1,32 +1,42 @@
 import React, { useState, useEffect } from 'react';
+import Cookies from 'js-cookie';
+import axios from 'axios';
+import {getURL, notificationURL} from '../utils/data'
+
 import { BsBell } from 'react-icons/bs';
 
 const NotificationsPage = () => {
   const [notifications, setNotifications] = useState([]);
 
+
+  const fetchNotifications = async () => {
+      try {
+        const token = Cookies.get("token"); // Gets token for login
+        const headers = {
+          withCredentials: true,
+          headers: {
+            Authorization: `Bearer ${token}`,
+            "Content-Type": "application/json",
+          },
+        };
+
+      await axios.get(getURL(notificationURL), headers)
+        .then((res)=> {
+          console.log(res.data);
+           setNotifications(res.data)
+        })
+      } catch(error)
+      {
+        console.log(error);
+      }
+  }
+
   useEffect(() => {
     // TODO: Fetch notifications from backend
     // For now, use dummy data
-    setNotifications([
-      {
-        id: 1,
-        text: 'New follower: @johndoe',
-        timestamp: Date.now() - 100000,
-        read: false,
-      },
-      {
-        id: 2,
-        text: 'Your tweet was liked by @janedoe',
-        timestamp: Date.now() - 200000,
-        read: true,
-      },
-      {
-        id: 3,
-        text: 'New message from @johndoe',
-        timestamp: Date.now() - 300000,
-        read: false,
-      },
-    ]);
+
+
+    fetchNotifications();
   }, []);
 
   return (
@@ -39,14 +49,14 @@ const NotificationsPage = () => {
       <ul>
         {notifications.map((notification) => (
           <li
-            key={notification.id}
+            key={notification._id}
             className={`${
               notification.read ? 'opacity-50' : ''
             } hover:bg-gray-100 rounded-lg px-4 py-2 mb-2`}
           >
-            <p className="text-gray-700">{notification.text}</p>
+            <p >{notification.type} from {notification.fromUser?.username}</p>
             <p className="text-gray-500 text-sm">
-              {new Date(notification.timestamp).toLocaleString()}
+              {new Date(notification.createdAt).toLocaleString()}
             </p>
           </li>
         ))}

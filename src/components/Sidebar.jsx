@@ -9,15 +9,13 @@ import axios from "axios";
 
 import { Link, useLocation } from 'react-router-dom';
 
-import UserContext from "../context/UserContext";
+
 import BarkboxModal from "./BarkboxModal";
 
 
+const Sidebar = ({userData, openBarkboxModal}) => {
 
 
-const Sidebar = ({onBarkButtonClick}) => {
-
-const userData = useContext(UserContext);
 const navLinks = generateNavLinks(userData);
 const location = useLocation();
 
@@ -50,12 +48,7 @@ const [isSidebarOpen, setIsSidebarOpen] = useState(window.innerWidth >= 768);
   
   return (
     <>
-      <button
-        className="bg-gray-200 text-gray-600 hover:bg-gray-300 hover:text-gray-700 px-2 py-1 absolute top-4 right-4 rounded-md"
-        onClick={toggleSidebar}
-      >
-        {isSidebarOpen ? "Hide" : "Show"}
-      </button>
+
       {isSidebarOpen && (
         <div
           className={`w-16 lg:w-60 min-h-screen fixed top-0 
@@ -94,7 +87,7 @@ const [isSidebarOpen, setIsSidebarOpen] = useState(window.innerWidth >= 768);
 
           <div className="flex ml-2">
             <button className="w-2/3 font-bold flex items-center justify-center border-b bg-blue-400 hover:bg-blue-500 text-white py-2 px-4 mt-8 rounded-full"
-            onClick={onBarkButtonClick}>
+            onClick={() => openBarkboxModal()}>
               <FaPen className="block lg:hidden" />{" "}
               <span className="hidden lg:block">Bark</span>
             </button>

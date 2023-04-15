@@ -1,38 +1,63 @@
-import React from 'react';
-import BarkBox from './Barkbox';
+import React, { useContext } from "react";
+import BarkBox from "./Barkbox";
+import Bark from "./Bark";
+import BarkboxModalContext from "../context/BarkboxModalContext";
 
-const BarkboxModal = ({ isOpen, closeModal }) => {
-  if (!isOpen) {
+const BarkboxModal = () => {
+  const { isBarkboxModalOpen, closeBarkboxModal, replyToBark } =
+    useContext(BarkboxModalContext);
+
+  if (!isBarkboxModalOpen) {
     return null;
   }
 
   const handleClickOutside = (e) => {
     if (e.target === e.currentTarget) {
-      closeModal();
+      closeBarkboxModal();
     }
   };
 
-
   return (
     <>
-        {/* Whats in Style in the div below is a work around for Chrome so that the blur scales properly. Stackover flow saving me. LOL */}
       <div
-        className="fixed inset-0 z-40 bg-white bg-opacity-10 backdrop-blur-sm"
-        style={{ width: '100vw', height: '100vh', filter: 'blur(0)' }} 
-        onClick={closeModal}
+        className="fixed inset-0 z-40 bg-gray-500 bg-opacity-10 backdrop-blur-sm "
+        style={{ width: "100vw", height: "100vh", filter: "blur(0)" }}
+        onClick={() => closeBarkboxModal()}
       ></div>
-      <div className="fixed inset-0 z-50 flex items-start justify-center overflow-x-hidden overflow-y-hidden outline-none focus:outline-none mt-16" onClick={handleClickOutside}>
-        <div className="relative w-auto mx-auto sm:w-4/6 md:w-1/2 lg:w-1/3"> {/* Adjust width here */}
-          <div className="relative flex flex-col w-full border-0 rounded-lg BarkboxModal-Dark
-          modal-animation">
+      <div
+        className="fixed inset-0 z-50 flex items-start justify-center overflow-x-hidden overflow-y-hidden outline-none focus:outline-none mt-16"
+        onClick={handleClickOutside}
+      >
+        <div className="relative w-11/12 mx-auto sm:w-3/5 md:w-3/5 lg:w-1/3">
+          {" "}
+          {/* Adjust width here */}
+          <div
+            className="relative flex flex-col w-full border-0 rounded-lg BarkboxModal-Dark
+          modal-animation"
+          >
             <button
               className="absolute top-0 right-0 p-1 mt-2 mr-2 text-2xl font-semibold leading-none text-white bg-transparent border-0 text-opacity-50 focus:outline-none"
-              onClick={closeModal}
+              onClick={() => closeBarkboxModal()}
             >
               &times;
             </button>
             <div className="flex-auto p-6">
-              <BarkBox closeModal={closeModal}/>
+
+              {replyToBark ? (
+                <>
+                  <Bark
+                    isReplyMode={true}
+                    content={replyToBark.content ? replyToBark.content : ""}
+                    user={replyToBark.user  ? replyToBark.user : ""}
+                    date={replyToBark.date ? replyToBark.date : ""}
+                    barkId={replyToBark.barkId}
+                  />
+                  <BarkBox  replyTo={replyToBark?.user} replyId={replyToBark?.barkId} closeModal={() => closeBarkboxModal()} />
+                </>
+              ) : (
+                <BarkBox closeModal={() => closeBarkboxModal()} />
+              )}
+
             </div>
           </div>
         </div>

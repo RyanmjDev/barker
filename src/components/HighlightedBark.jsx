@@ -64,7 +64,9 @@ const HighlightedBark = ({barkId, bark}) => {
         <Divider/>
 
  
-     <Reaction size="large" barkId={barkId}  isLikedByUser={bark ? bark.isLikedByUser : false} /> 
+     <Reaction size="large" barkId={barkId}  isLikedByUser={bark ? bark.isLikedByUser : false} 
+     content={bark.content} likes={bark.likes} user={bark?.user?.username} date={bark.createdAt} />
+
 
 
         <Divider/>

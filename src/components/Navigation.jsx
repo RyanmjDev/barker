@@ -1,26 +1,20 @@
-import React, {useState} from 'react'
+import React, {useState, useContext} from 'react'
 import Sidebar from './Sidebar';
 import BottomNavbar from './BottomNavBar';
-import BarkboxModal from './BarkboxModal';
+
+import UserContext from "../context/UserContext";
+import BarkboxModalContext from "../context/BarkboxModalContext";
 
 
 const Navigation = ({ children }) => {
-    const [isBarkboxModalOpen, setIsBarkboxModalOpen] = useState(false);
 
-    const openBarkboxModal = () => {
-      setIsBarkboxModalOpen(true);
-    };
-  
-    const closeBarkboxModal = () => {
-      setIsBarkboxModalOpen(false);
-    };
-  
-    
+  const userData = useContext(UserContext);
+  const { openBarkboxModal } = useContext(BarkboxModalContext);
+
   return (
     <>
-    <Sidebar onBarkButtonClick={openBarkboxModal} />
-    <BottomNavbar onBarkButtonClick={openBarkboxModal} />
-    <BarkboxModal isOpen={isBarkboxModalOpen} closeModal={closeBarkboxModal} />
+    <Sidebar userData={userData} openBarkboxModal={openBarkboxModal}/>
+    <BottomNavbar  userData={userData}  openBarkboxModal={openBarkboxModal} />
     {children}
   </>
   )

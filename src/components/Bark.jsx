@@ -10,7 +10,11 @@ import axios from 'axios'
 
 
 
-const Bark = ({ barkId, content, user, date, likes, isLikedByUser, replies }) => {
+const Bark = ({ barkId, isReplyMode, content, user, date, likes, isLikedByUser, replies }) => {
+  if (!content) {
+    return null;
+  }
+  
   const handleClick = (event) => {
     window.location.href = `/bark/${barkId}`;
   };
@@ -40,7 +44,7 @@ const Bark = ({ barkId, content, user, date, likes, isLikedByUser, replies }) =>
       className="rounded-lg w-full max-w-2xl mx-auto my-2 cursor-pointer"
       onClick={handleClick}
     >
-      <Divider />
+   {!isReplyMode &&  <Divider />}
 
       <div className="flex items-start">
         <Link to={`/profile/${user}`} onClick={handleLinkClick}>
@@ -61,16 +65,17 @@ const Bark = ({ barkId, content, user, date, likes, isLikedByUser, replies }) =>
             <span className="text-gray-500 ml-2">{`@${user}`}</span>
             <span className="text-gray-500 mx-2">·</span>
             <span className="text-gray-500">{timeSince(date)}</span>
-            <div className="flex ml-auto">
+          
+          {!isReplyMode &&  <div className="flex ml-auto">
               <BsThreeDots onClick={handleDeleteClick}/>
-            </div>
+            </div> }
           </div>
 
-          <p className="mt-2 mb-2 text-md">{content}</p>
+          <p className=" mb-2 text-md">{content}</p>
         </div>
       </div>
 
-      <Reaction barkId={barkId} likes={likes} isLikedByUser={isLikedByUser} replies={replies}/>
+     {!isReplyMode && <Reaction barkId={barkId} content={content} likes={likes} user={user} date={date} isLikedByUser={isLikedByUser} replies={replies}/> }
     </div>
   );
 };
