@@ -2,8 +2,9 @@ import React, { useState, useEffect } from 'react';
 import Cookies from 'js-cookie';
 import axios from 'axios';
 import {getURL, notificationURL} from '../utils/data'
-
+import { Link } from "react-router-dom";
 import { BsBell } from 'react-icons/bs';
+import {AiFillHeart  } from 'react-icons/ai';
 
 const NotificationsPage = () => {
   const [notifications, setNotifications] = useState([]);
@@ -54,10 +55,24 @@ const NotificationsPage = () => {
               notification.read ? 'opacity-50' : ''
             } hover:bg-gray-100 rounded-lg px-4 py-2 mb-2`}
           >
-            <p >{notification.type} from {notification.fromUser?.username}</p>
-            <p className="text-gray-500 text-sm">
-              {new Date(notification.createdAt).toLocaleString()}
-            </p>
+            <div className="flex">
+    
+            <div>
+                <AiFillHeart className="text-red-500 text-xl mr-4" />
+            </div>
+          
+            <div>
+            <img
+                className="w-8 h-8 rounded-full mr-4"
+                src="https://pbs.twimg.com/profile_images/1564774195019632640/EYZ42tpe_400x400.jpg"
+                alt="Profile"
+              />
+              <p>{notification.type} from {notification.fromUser?.username}</p>
+              <p className="text-gray-500 text-sm">
+                <Link to={`/bark/${notification.relatedBark._id}`}>{notification.relatedBark.content} </Link>
+              </p>
+            </div>
+            </div>
           </li>
         ))}
       </ul>
@@ -66,6 +81,6 @@ const NotificationsPage = () => {
       )}
     </div>
   );
-};
+      }  
 
 export default NotificationsPage;
