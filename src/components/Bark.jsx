@@ -7,6 +7,7 @@ import { allBarksURL } from "../utils/data";
 import { Link } from "react-router-dom";
 import Cookies from 'js-cookie'
 import axios from 'axios'
+import ProfilePic from "./ProfilePic";
 
 
 
@@ -47,13 +48,8 @@ const Bark = ({ barkId, isReplyMode, content, user, date, likes, isLikedByUser, 
    {!isReplyMode &&  <Divider />}
 
       <div className="flex items-start">
-        <Link to={`/profile/${user}`} onClick={handleLinkClick}>
-          <img
-            className="w-12 h-12 rounded-full mr-4"
-            src="https://pbs.twimg.com/profile_images/1564774195019632640/EYZ42tpe_400x400.jpg"
-            alt="Profile"
-          />
-        </Link>
+      
+      <ProfilePic size="medium" profileLink={`/profile/${user}`} onClick={handleLinkClick} />
 
         <div className="flex flex-col w-full">
           <div className="flex items-center">

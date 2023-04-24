@@ -48,7 +48,7 @@ const Barkbox = ({replyTo, replyId, closeModal}) => {
     .then(response => {
       // Empty the Text Box
       setBarkText('');
-      closeModal();
+      closeModal(); // Can Generate Errors
     })
     
   } catch (error) {

@@ -11,6 +11,7 @@ import "../App.css";
 import axios from "axios";
 import { useParams } from "react-router-dom";
 import UserContext from "../context/UserContext";
+import ProfilePic from "./ProfilePic";
 
 const Profile = () => {
   const userData = useContext(UserContext);
@@ -78,11 +79,8 @@ const Profile = () => {
           alt="Cover Photo"
         />
         <div className="flex justify-between w-full">
-          <img
-            className="w-32 h-32 rounded-full  flex mt-[-32px] ml-4 border-4 border-gray-100 border-solid"
-            src="https://pbs.twimg.com/profile_images/1564774195019632640/EYZ42tpe_400x400.jpg"
-            alt="Profile"
-          />
+
+        <ProfilePic size="large"/>
 
           {userData === profileUser ? (
             <button className="bg-gray-500 hover:bg-gray-700 text-white font-bold py-2 px-4 rounded-full w-20 h-10 mr-8 mt-8">

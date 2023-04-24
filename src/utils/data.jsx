@@ -3,7 +3,8 @@ export const loginURL = 'http://localhost:3000/api/users/login';
 export const usersURL = 'http://localhost:3000/api/users/';
 export const profileURL = 'http://localhost:3000/api/users/profile/';
 
-export const notificationURL = '/api/users/notifications'
+// export const notificationURL = '/api/users/notifications'
+export const notificationURL = '/api/notifications'
 const baseURL = 'http://localhost:3000'
 
 export const getURL = (URL) => {
