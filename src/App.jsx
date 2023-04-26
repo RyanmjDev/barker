@@ -19,9 +19,31 @@ import BarkboxModal from "./components/BarkboxModal";
 import Navigation from "./components/Navigation";
 import {BarkboxModalProvider } from "./context/BarkboxModalContext";
 
+import socket from "./utils/socket"
+
 function App() {
   const userData = useCachedUserData(usersURL, headers, CACHE_KEY);
 
+  useEffect(() => {
+    socket.emit('join', userData);
+    console.log('socket.connected:', socket.connected);
+  }, [userData]);
+
+  useEffect(() => {
+    console.log("Notification listener...")
+    console.log('socket.connected:', socket.connected);
+        const handleNewNotification = (notification) => {
+          console.log(notification);
+        }
+        socket.on('newNotification', handleNewNotification);
+     
+        return () => {
+          // Clean up the listener when the component unmounts
+          socket.off('newNotification', handleNewNotification);
+        };
+    
+      }, [])
+       
 
   return (
     <>

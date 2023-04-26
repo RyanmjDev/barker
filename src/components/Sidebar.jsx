@@ -12,6 +12,8 @@ import { Link, useLocation } from 'react-router-dom';
 
 import BarkboxModal from "./BarkboxModal";
 
+import socket from "../utils/socket"
+
 
 const Sidebar = ({userData, openBarkboxModal}) => {
 
@@ -45,7 +47,7 @@ const [isSidebarOpen, setIsSidebarOpen] = useState(window.innerWidth >= 768);
   }, []);
 
 
-  
+
   return (
     <>
 
