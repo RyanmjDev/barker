@@ -29,21 +29,7 @@ function App() {
     console.log('socket.connected:', socket.connected);
   }, [userData]);
 
-  useEffect(() => {
-    console.log("Notification listener...")
-    console.log('socket.connected:', socket.connected);
-        const handleNewNotification = (notification) => {
-          console.log(notification);
-        }
-        socket.on('newNotification', handleNewNotification);
-     
-        return () => {
-          // Clean up the listener when the component unmounts
-          socket.off('newNotification', handleNewNotification);
-        };
-    
-      }, [])
-       
+
 
   return (
     <>

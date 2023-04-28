@@ -46,7 +46,20 @@ const [isSidebarOpen, setIsSidebarOpen] = useState(window.innerWidth >= 768);
     };
   }, []);
 
-
+  useEffect(() => {
+    console.log('socket.connected:', socket.connected);
+        const handleNewNotification = (notification) => {
+          console.log(notification);
+        }
+        socket.on('updateUnreadCount', handleNewNotification);
+     
+        return () => {
+          // Clean up the listener when the component unmounts
+          socket.off('updateUnreadCount', handleNewNotification);
+        };
+    
+      }, [])
+       
 
   return (
     <>

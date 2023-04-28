@@ -1,10 +1,12 @@
 import { FaHome, FaHashtag, FaBell, FaEnvelope, FaBookmark, FaListAlt, FaUser } from 'react-icons/fa';
 import {IoMdSettings} from 'react-icons/io'
+import NotificationIcon from '../components/NotificationIcon';
 
 
 const HomeIcon = <FaHome size={24} className='mr-4 '/>;
 const HashtagIcon = <FaHashtag size={24}  className='mr-4' />;
-const BellIcon = <FaBell size={24}  className='mr-4' />;
+// const BellIcon = <FaBell size={24}  className='mr-4' />;
+const BellIcon = <NotificationIcon/>
 const EnvelopeIcon = <FaEnvelope size={24}  className='mr-4' />;
 const BookmarkIcon = <FaBookmark size={24}  className='mr-4' />;
 const ListAltIcon = <FaListAlt size={24}  className='mr-4'/>;
