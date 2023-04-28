@@ -2,8 +2,7 @@ import React, {useState, useEffect} from 'react'
 import { FaBell } from 'react-icons/fa';
 
 
-const NotificationIcon = () => {
-    const [unreadCount, setUnreadCount] = useState(0);
+const NotificationIcon = ({unreadCount}) => {
 
   return (
     <>

@@ -12,13 +12,12 @@ import { Link, useLocation } from 'react-router-dom';
 
 import BarkboxModal from "./BarkboxModal";
 
-import socket from "../utils/socket"
 
 
-const Sidebar = ({userData, openBarkboxModal}) => {
+const Sidebar = ({userData, openBarkboxModal, unreadCount}) => {
 
 
-const navLinks = generateNavLinks(userData);
+const navLinks = generateNavLinks(userData, unreadCount);
 const location = useLocation();
 
 const [isSidebarOpen, setIsSidebarOpen] = useState(window.innerWidth >= 768); 
@@ -46,19 +45,7 @@ const [isSidebarOpen, setIsSidebarOpen] = useState(window.innerWidth >= 768);
     };
   }, []);
 
-  useEffect(() => {
-    console.log('socket.connected:', socket.connected);
-        const handleNewNotification = (notification) => {
-          console.log(notification);
-        }
-        socket.on('updateUnreadCount', handleNewNotification);
-     
-        return () => {
-          // Clean up the listener when the component unmounts
-          socket.off('updateUnreadCount', handleNewNotification);
-        };
-    
-      }, [])
+
        
 
   return (

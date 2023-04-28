@@ -12,9 +12,9 @@ import { FaPen } from "react-icons/fa";
 
 
 
-const BottomNavbar = ({userData, openBarkboxModal}) => {
+const BottomNavbar = ({userData, openBarkboxModal, unreadCount}) => {
 
-  const bottomNavLinks = generateBottomNavLinks(userData);
+  const bottomNavLinks = generateBottomNavLinks(userData, unreadCount);
   const location = useLocation();
 
   return (

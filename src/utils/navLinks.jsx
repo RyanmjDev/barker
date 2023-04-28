@@ -3,10 +3,13 @@ import {IoMdSettings} from 'react-icons/io'
 import NotificationIcon from '../components/NotificationIcon';
 
 
+
+
+export const generateNavLinks = (username, unreadCount) => {
+
 const HomeIcon = <FaHome size={24} className='mr-4 '/>;
 const HashtagIcon = <FaHashtag size={24}  className='mr-4' />;
-// const BellIcon = <FaBell size={24}  className='mr-4' />;
-const BellIcon = <NotificationIcon/>
+const BellIcon = <NotificationIcon unreadCount={unreadCount} />
 const EnvelopeIcon = <FaEnvelope size={24}  className='mr-4' />;
 const BookmarkIcon = <FaBookmark size={24}  className='mr-4' />;
 const ListAltIcon = <FaListAlt size={24}  className='mr-4'/>;
@@ -14,8 +17,6 @@ const SettingsIcon = <IoMdSettings size={24}  className='mr-4'/>;
 const UserIcon = <FaUser size={24}  className='mr-4' />;
 
 
-
-export const generateNavLinks = (username) => {
  const navLinks =[
   {
     text: 'Home',
@@ -64,7 +65,13 @@ return navLinks;
 
 };
 
-export const generateBottomNavLinks = (username) => {
+export const generateBottomNavLinks = (username, unreadCount) => {
+  
+  const HomeIcon = <FaHome size={24} className='mr-4 '/>;
+  const HashtagIcon = <FaHashtag size={24}  className='mr-4' />;
+  const BellIcon = <NotificationIcon unreadCount={unreadCount} />
+  const UserIcon = <FaUser size={24}  className='mr-4' />;
+  const SettingsIcon = <IoMdSettings size={24}  className='mr-4'/>;
 
   const bottomNavLinks =[
   {
