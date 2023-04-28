@@ -8,11 +8,15 @@ import {AiFillHeart  } from 'react-icons/ai';
 import ProfilePic from '../components/ProfilePic';
 import UserNotification from '../components/UserNotification';
 
+// Page that displays a User's Notifications
 const NotificationsPage = () => {
   const [notifications, setNotifications] = useState([]);
 
 
-  const fetchNotifications = async () => {
+ 
+
+  useEffect(() => {  
+    const fetchNotifications = async () => {
       try {
         const token = Cookies.get("token"); // Gets token for login
         const headers = {
@@ -34,7 +38,7 @@ const NotificationsPage = () => {
       }
   }
 
-  useEffect(() => {  
+
     fetchNotifications();
   }, []);
 

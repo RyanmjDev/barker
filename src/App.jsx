@@ -22,6 +22,11 @@ import {BarkboxModalProvider } from "./context/BarkboxModalContext";
 import socket from "./utils/socket"
 
 function App() {
+
+// App component serves as the root component of the application.
+// It sets up context providers for user data and the Barkbox modal,
+// and renders the Navigation component and Outlet for routing.
+
   const userData = useCachedUserData(usersURL, headers, CACHE_KEY);
 
   useEffect(() => {

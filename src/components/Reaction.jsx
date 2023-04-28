@@ -44,6 +44,7 @@ const Reaction = ({ barkId, content, size, likes,  user, date, isLikedByUser, re
       heartRef.current.addEventListener('animationend', () => {
       heartRef.current.classList.remove('like-animation');
       });
+  
     } catch (error) {
       console.error('Error like bark:', error);
     }
@@ -74,17 +75,17 @@ const Reaction = ({ barkId, content, size, likes,  user, date, isLikedByUser, re
       <div className='flex items-center'>  
        <span ref={heartRef} onClick={handleLike}>
         {userLiked ? (
+         <span ref={heartRef} onClick={handleLike}>
           <AiFillHeart
-            ref={heartRef}
             className='mr-3 text-red-500'
-            onClick={handleLike}
           />
+          </span>
         ) : (
+          <span ref={heartRef} onClick={handleLike}>
           <AiOutlineHeart
-            ref={heartRef}
             className='mr-3 text-gray-500 hover:text-red-500'
-            onClick={handleLike}
           />
+          </span>
         )}
         </span>
         <span className='mr-6'>{!size && postLikes}</span>

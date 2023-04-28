@@ -10,6 +10,8 @@ import Barklist from '../components/Barklist'
 
 
 const HLBarkPage = () => {
+  // HLBarkPage component displays a highlighted bark along with its replies.
+  // It fetches the bark data based on the provided barkId from the URL params.
   const { barkId } = useParams();
   const [bark, setBark] = useState({});
 
@@ -39,9 +41,7 @@ const HLBarkPage = () => {
     fetchBark();
   }, []);
 
-  useEffect(() => {
-     console.log(bark);
-  }, [bark])
+
 
 
 

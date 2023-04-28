@@ -4,9 +4,9 @@ import Cookies from "js-cookie";
 import { loginURL, clearCachedUserData } from '../utils/data';
 
 
-
+// Login component provides a form for users to log in to their Barker account.
+// Upon successful authentication, it redirects the user to the home page.
 const Login = () => {
-
 
   const handleSubmit = async (event) => {
     event.preventDefault();
@@ -32,11 +32,15 @@ const Login = () => {
     }
   };
 
-useEffect(() => {
-    // Check to see if we're already logged in
+  // Check to see if we're already logged in
+  const checkLoggedIn = () => {
     if (Cookies.get("token")) {
       window.location.href = "/";
     }
+  }
+
+useEffect(() => {
+  checkLoggedIn();
   }, []);
 
 

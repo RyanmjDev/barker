@@ -49,8 +49,8 @@ const UserNotification = ({ notification }) => {
           </div>
           <p>{getNotificationMessage()}</p>
           <p className="text-gray-500 text-sm">
-            <Link to={`/bark/${notification.relatedBark._id}`}>
-              {notification.relatedBark.content}
+            <Link to={`/bark/${notification.relatedBark?._id}`}>
+              {notification.relatedBark?.content}
             </Link>
           </p>
         </div>

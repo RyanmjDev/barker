@@ -6,6 +6,12 @@
 }
 
 /*Dark Mode Testing*/
+
+.darkModeBackground {
+  background-color: #15202B;
+  color: white;
+}
+
 body {
   background-color: #15202B;
   color: white;

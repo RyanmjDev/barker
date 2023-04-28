@@ -4,6 +4,8 @@ import Barkbox from '../components/Barkbox'
 import Barklist from '../components/Barklist'
 
 const Home = () => {
+  // Home component represents the main landing page of the application.
+  // It renders the Barkbox for creating new barks and Barklist to display a list of barks.
   return (
     <>
      <div className="hidden md:flex p-4 items-center rounded-lg w-full max-w-2xl mx-auto my-4 text-2xl">
