@@ -1,12 +1,15 @@
 import React, { useState, useEffect } from 'react';
 import Cookies from 'js-cookie';
 import axios from 'axios';
-import {getURL, notificationURL} from '../utils/data'
+import {getURL, notificationURL, readNotificationsURL} from '../utils/data'
 import { Link } from "react-router-dom";
 import { BsBell } from 'react-icons/bs';
 import {AiFillHeart  } from 'react-icons/ai';
 import ProfilePic from '../components/ProfilePic';
 import UserNotification from '../components/UserNotification';
+
+import socket from "../utils/socket"
+import jwtDecode from 'jwt-decode';
 
 // Page that displays a User's Notifications
 const NotificationsPage = () => {
@@ -38,9 +41,39 @@ const NotificationsPage = () => {
       }
   }
 
-
     fetchNotifications();
   }, []);
+
+
+  useEffect(() => {
+    const markAllNotificationsAsRead = async () => {
+      const token = Cookies.get("token");
+      const headers = {
+        withCredentials: true,
+        headers: {
+          Authorization: `Bearer ${token}`,
+          "Content-Type": "application/json",
+        },
+      };
+
+      try {
+        await axios.post(getURL(readNotificationsURL), {}, headers);
+        
+        // Will set unread notifications back to after they've been read
+        const decodedToken = jwtDecode(token);
+        const userId = decodedToken.id
+        socket.emit('readAllNotifications', userId);
+
+        console.log("All notifications marked as read");
+      } catch (error) {
+        console.error("Error marking all notifications as read:", error);
+      }
+    };
+
+    if (notifications.length > 0) {
+      markAllNotificationsAsRead();
+    }
+  }, [notifications]);
 
   return (
     <div className="p-4 w-full max-w-2xl mx-auto my-4">

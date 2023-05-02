@@ -1,7 +1,7 @@
 import { useCallback } from 'react';
 import Cookies from 'js-cookie';
 import axios from 'axios';
-import { allBarksURL } from '../utils/data';
+import { getURL, allBarksURL } from '../utils/data';
 
 
 const useDeleteBark = () => {
@@ -16,7 +16,7 @@ const useDeleteBark = () => {
     };
 
     try {
-      await axios.delete(`${allBarksURL}/${barkId}`, headers);
+      await axios.delete(`${getURL(allBarksURL)}${barkId}`, headers);
       console.log(`Deleted bark with id ${barkId}`);
     } catch (error) {
       console.error(`Error deleting bark with id ${barkId}: `, error);

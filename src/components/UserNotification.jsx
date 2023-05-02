@@ -25,7 +25,7 @@ const UserNotification = ({ notification }) => {
     <li
       key={notification._id}
       className={`${
-        notification.read ? 'opacity-50 ' : ''
+        notification.read ? 'opacity-50 bg-gray-900' : 'bg-gray-400'
       }  cursor-pointer hover:bg-gray-800 rounded-lg px-4 py-2 mb-2`}
     >
       <div className="flex">

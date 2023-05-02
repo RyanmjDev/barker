@@ -27,6 +27,7 @@ const BottomNavbar = ({ userData, openBarkboxModal, unreadCount }) => {
               }`}
               key={navLink.id}
             >
+              {isActive && <div className="w-1/5 h-1 bg-blue-500 absolute top-0"></div>}
               <span className="items-center justify-center ml-3">{navLink.icon}</span>
               <span className="text-xs font-medium">{navLink.text}</span>
             </Link>

@@ -1,10 +1,11 @@
-export const allBarksURL = 'http://localhost:3000/api/barks';
-export const loginURL = 'http://localhost:3000/api/users/login';
-export const usersURL = 'http://localhost:3000/api/users/';
-export const profileURL = 'http://localhost:3000/api/users/profile/';
+export const allBarksURL = '/api/barks/';
+export const loginURL = '/api/users/login/';
+export const usersURL = '/api/users/';
+export const profileURL = '/api/users/profile/';
 
 // export const notificationURL = '/api/users/notifications'
 export const notificationURL = '/api/notifications'
+export const readNotificationsURL = '/api/notifications/readAll'
 const baseURL = 'http://localhost:3000'
 
 export const getURL = (URL) => {

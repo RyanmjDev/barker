@@ -2,7 +2,7 @@ import React, { useState, useEffect, useRef, useContext } from 'react';
 import { BsChat, BsShare } from 'react-icons/bs';
 import { AiOutlineRetweet, AiFillHeart, AiOutlineHeart } from 'react-icons/ai';
 import { RxBookmark } from 'react-icons/rx';
-import { allBarksURL } from '../utils/data';
+import { getURL, allBarksURL } from '../utils/data';
 
 import Cookies from 'js-cookie';
 import axios from 'axios';
@@ -35,7 +35,7 @@ const Reaction = ({ barkId, content, size, likes,  user, date, isLikedByUser, re
     };
 
     try {
-      await axios.post(`${allBarksURL}/${barkId}/like`, {}, headers);
+      await axios.post(`${getURL(allBarksURL)}${barkId}/like`, {}, headers);
       console.log('liked the bark!');
       setUserLiked(!userLiked);
       userLiked ? setPostLikes(postLikes - 1) : setPostLikes(postLikes + 1);

@@ -8,7 +8,7 @@ import HighlightedBark from "./components/HighlightedBark";
 import VerticalDivider from "./components/VerticalDivider";
 import { Outlet } from "react-router-dom";
 
-import { headers, usersURL, CACHE_KEY } from "./utils/data";
+import { headers, getURL, usersURL, CACHE_KEY } from "./utils/data";
 import axios from "axios";
 
 import UserContext from "./context/UserContext";
@@ -20,6 +20,8 @@ import Navigation from "./components/Navigation";
 import {BarkboxModalProvider } from "./context/BarkboxModalContext";
 
 import socket from "./utils/socket"
+import Cookies from "js-cookie";
+import jwtDecode from 'jwt-decode';
 
 function App() {
 
@@ -27,13 +29,18 @@ function App() {
 // It sets up context providers for user data and the Barkbox modal,
 // and renders the Navigation component and Outlet for routing.
 
-  const userData = useCachedUserData(usersURL, headers, CACHE_KEY);
+  const userData = useCachedUserData(getURL(usersURL), headers, CACHE_KEY);
 
   useEffect(() => {
-    socket.emit('join', userData);
-    console.log('socket.connected:', socket.connected);
-  }, [userData]);
-
+    const token = Cookies.get('token');
+  
+    if (token) {
+      const decodedToken = jwtDecode(token);
+      const userId = decodedToken.id
+      socket.emit('join', userId);
+    }
+  }, [Cookies.get('token')]);
+  
 
 
   return (

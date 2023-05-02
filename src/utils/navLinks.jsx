@@ -23,31 +23,31 @@ const UserIcon = <FaUser size={24}  className='mr-4' />;
     icon: HomeIcon,
     link: '/home'
   },
-  {
-    text: 'Explore',
-    icon: HashtagIcon,
-    link: '/'
-  },
+  // {
+  //   text: 'Explore',
+  //   icon: HashtagIcon,
+  //   link: '/'
+  // },
   {
     text: 'Notifications',
     icon: BellIcon,
     link: '/notifications'
   },
-  {
-    text: 'Messages',
-    icon: EnvelopeIcon,
-    link: '/messages'
-  },
+  // {
+  //   text: 'Messages',
+  //   icon: EnvelopeIcon,
+  //   link: '/messages'
+  // },
   {
     text: 'Bookmarks',
     icon: BookmarkIcon,
     link: '/bookmarks'
   },
-  {
-    text: 'Lists',
-    icon: ListAltIcon,
-    link: '/'
-  },
+  // {
+  //   text: 'Lists',
+  //   icon: ListAltIcon,
+  //   link: '/'
+  // },
   {
     text: "Profile",
     icon: UserIcon,

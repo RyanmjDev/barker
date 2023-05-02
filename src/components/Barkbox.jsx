@@ -4,7 +4,7 @@ import { useState } from 'react';
 import { BiImageAdd } from 'react-icons/bi';
 import { GrEmoji } from 'react-icons/gr';
 import EmojiPicker, {Emoji} from 'emoji-picker-react';
-import { allBarksURL, headers } from '../utils/data';
+import {getURL, allBarksURL, headers } from '../utils/data';
 import '../App.css'
 
 
@@ -12,7 +12,7 @@ import Cookies from "js-cookie";
 import AtLink from './AtLink';
 
 
-const Barkbox = ({replyTo, replyId, closeModal}) => {
+const Barkbox = ({replyTo, replyId, closeModal, onNewBark}) => {
   const [barkText, setBarkText] = useState('');
   const [emojiOpen, setEmojiOpen] = useState(false);
 
@@ -37,7 +37,7 @@ const Barkbox = ({replyTo, replyId, closeModal}) => {
     try{
       
       // If we're replying, use the Reply route. Otherwise, we're just posting a normal bark
-      const url = replyTo ?  `${allBarksURL}/${replyId}` : allBarksURL;
+      const url = replyTo ?  `${getURL(allBarksURL)}${replyId}` : getURL(allBarksURL);
     
       await axios
     .post(url,
@@ -47,8 +47,16 @@ const Barkbox = ({replyTo, replyId, closeModal}) => {
     headers)
     .then(response => {
       // Empty the Text Box
+      console.log(response.data)
       setBarkText('');
-      closeModal(); // Can Generate Errors
+        if(closeModal)
+        {
+          closeModal(); // Can Generate Errors
+        }
+
+        if (onNewBark) {
+          onNewBark(response.data);
+        }
     })
     
   } catch (error) {

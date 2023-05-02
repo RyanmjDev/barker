@@ -2,21 +2,21 @@ import React, { useEffect, useState } from 'react';
 import Bark from './Bark';
 import Cookies from 'js-cookie';
 import axios from 'axios';
-import { allBarksURL, usersURL } from '../utils/data';
+import {getURL, allBarksURL, usersURL } from '../utils/data';
 
-const Barklist = ({ type, username, barkId }) => {
+const Barklist = ({ type, username, barkId, newBark}) => {
   const [barks, setBarks] = useState([]);
 
   const getUrlByType = () => {
     switch (type) {
       case 'user':
-        return `${usersURL}/${username}/barks`;
+        return `${getURL(usersURL)}${username}/barks`;
       case 'replies':
-        return `${allBarksURL}/${barkId}/replies`;
+        return `${getURL(allBarksURL)}${barkId}/replies`;
       case 'likes':
-        return `${usersURL}/${username}/likes`;
+        return `${getURL(usersURL)}${username}/likes`;
       default:
-        return allBarksURL;
+        return getURL(allBarksURL);
     }
   };
 
@@ -59,6 +59,25 @@ const Barklist = ({ type, username, barkId }) => {
   useEffect(() => {
     fetchBarks();
   }, []);
+
+  useEffect(() => {
+    if (newBark) {
+      setBarks([
+        <Bark
+          key={newBark._id}
+          barkId={newBark._id}
+          content={newBark.content}
+          user={newBark.user.username}
+          date={newBark.createdAt}
+          likes={newBark.likes.length}
+          isLikedByUser={newBark.isLikedByUser}
+          replies={newBark.replies.length}
+        />,
+        ...barks,
+      ]);
+    }
+  }, [newBark]);
+  
 
   return <>{barks}</>;
 };

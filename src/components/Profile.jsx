@@ -5,7 +5,7 @@ import Barklist from "./Barklist";
 import Cookies from "js-cookie";
 
 import { profileLinks } from "../utils/profileLinks";
-import { usersURL, profileURL } from "../utils/data";
+import { getURL, usersURL, profileURL } from "../utils/data";
 
 import "../App.css";
 import axios from "axios";
@@ -35,7 +35,7 @@ const Profile = () => {
     };
 
     try {
-      await axios.get(`${profileURL}${username}`, headers).then((res) => {
+      await axios.get(`${getURL(profileURL)}${username}`, headers).then((res) => {
         console.log(res.data);
         setProfile(res.data.profile);
         setProfileUser(res.data.username);
@@ -62,7 +62,7 @@ const Profile = () => {
       },
     };
     await axios
-      .post(`${usersURL}${username}/follow`, {}, headers)
+      .post(`${getURL(usersURL)}${username}/follow`, {}, headers)
       .then((res) => {
         console.log(res);
         setIsFollowing(!isFollowing);
@@ -120,7 +120,7 @@ const Profile = () => {
             return (
               <button
                 onClick={() => setSelectedTab(profileLink.type)}
-                className={`flex flex-col items-center justify-center w-1/5 ${
+                className={`flex flex-col items-center justify-center w-1/12 ${
                   selectedTab === profileLink.type ? "profile-tab" : ""
                 }`}
                 key={index}

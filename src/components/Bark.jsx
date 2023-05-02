@@ -32,7 +32,7 @@ const Bark = ({ barkId, isReplyMode, content, user, date, likes, isLikedByUser, 
 
   return (
     <div
-      className="rounded-lg w-full max-w-2xl mx-auto my-2 cursor-pointer"
+      className="rounded-lg w-full max-w-2xl mx-auto my-1 cursor-pointer"
       onClick={handleClick}
     >
       {!isReplyMode && <Divider />}
