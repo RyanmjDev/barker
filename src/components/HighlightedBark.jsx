@@ -1,11 +1,14 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import Reaction from './Reaction';
 import Divider from './Divider';
 import { formatDate } from '../utils/formatDate';
 import { Link } from 'react-router-dom';
 
+import BarkboxModalContext from "../context/BarkboxModalContext";
+
 const HighlightedBark = ({ barkId, bark }) => {
   const [loading, setLoading] = useState(true);
+  const { openEngagementModal } = useContext(BarkboxModalContext);
 
   useEffect(() => {
     if (bark) {
@@ -33,7 +36,7 @@ const HighlightedBark = ({ barkId, bark }) => {
             alt="Profile"
           />
           <div className="flex flex-col">
-            <span className="font-semibold">Night Sky Eikon</span>
+            <span className="font-semibold">{userProfile?.displayName}</span>
             <span className="text-gray-500">@{userProfile?.username}</span>
           </div>
         </div>
@@ -48,7 +51,7 @@ const HighlightedBark = ({ barkId, bark }) => {
         <span className="hover:underline pr-6">
           <span className="font-bold">4</span> Quotes
         </span>
-        <span className="hover:underline">
+        <span className="hover:underline" onClick={() => openEngagementModal()}>
           <span className="font-bold">{bark.likes && bark.likes.length}</span> Likes
         </span>
       </div>

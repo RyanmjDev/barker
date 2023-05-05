@@ -22,6 +22,9 @@ import {BarkboxModalProvider } from "./context/BarkboxModalContext";
 import socket from "./utils/socket"
 import Cookies from "js-cookie";
 import jwtDecode from 'jwt-decode';
+import EngagementModal from "./components/EngagementModal"; // Remove this later
+
+
 
 function App() {
 
@@ -50,7 +53,8 @@ function App() {
         <div className="flex flex-col md:flex-row">
           <div className="flex-initial">
             <Navigation />
-         <BarkboxModal  />
+            <EngagementModal/>
+            <BarkboxModal  />
           </div>
         </div>
         <Outlet />

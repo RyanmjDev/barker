@@ -13,9 +13,14 @@ import { useParams } from "react-router-dom";
 import UserContext from "../context/UserContext";
 import ProfilePic from "./ProfilePic";
 
+import BarkboxModalContext from "../context/BarkboxModalContext";
+
 const Profile = () => {
+  const { openEngagementModal } = useContext(BarkboxModalContext);
+
   const userData = useContext(UserContext);
   const [profileUser, setProfileUser] = useState("");
+  const [displayName, setDisplayName] = useState("");
   const [profile, setProfile] = useState("");
   const [followers, setFollowers] = useState(null);
   const [following, setFollowing] = useState(null);
@@ -38,6 +43,7 @@ const Profile = () => {
       await axios.get(`${getURL(profileURL)}${username}`, headers).then((res) => {
         console.log(res.data);
         setProfile(res.data.profile);
+        setDisplayName(res.data.displayName);
         setProfileUser(res.data.username);
         setFollowers(res.data.followers);
         setFollowing(res.data.following);
@@ -82,7 +88,7 @@ const Profile = () => {
 
         <ProfilePic size="large"/>
 
-          {userData === profileUser ? (
+          {userData.username === profileUser ? (
             <button className="bg-gray-500 hover:bg-gray-700 text-white font-bold py-2 px-4 rounded-full w-20 h-10 mr-8 mt-8">
               Edit
             </button>
@@ -100,17 +106,22 @@ const Profile = () => {
             </button>
           )}
         </div>
-        <span className="text-2xl font-semibold">Night Sky Eikon</span>
+        <span className="text-2xl font-semibold">{displayName}</span>
         <span className="text-gray-500">@{profileUser}</span>
 
         <div className="mt-2">{profile}</div>
 
         <div className="flex mt-2">
-          <span className="mr-6 hover:underline">
+          <span className="mr-6 hover:underline"
+          onClick={() => openEngagementModal()}
+          >
             {" "}
-            <span className="font-bold">{following}</span> Following
+            <span className="font-bold">
+              {following}</span> Following
           </span>
-          <span className="hover:underline">
+          <span className="hover:underline" 
+          onClick={() => openEngagementModal()}
+          >
             <span className="font-bold">{followers}</span> Followers
           </span>
         </div>

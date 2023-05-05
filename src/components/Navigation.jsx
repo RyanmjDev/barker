@@ -11,7 +11,8 @@ import socket from "../utils/socket"
 const Navigation = ({ children }) => {
 
 const [unreadCount, setUnreadCount] = useState(0);
-
+const userData = useContext(UserContext);
+const { openBarkboxModal } = useContext(BarkboxModalContext);
 
   
 useEffect(() => {
@@ -30,8 +31,7 @@ useEffect(() => {
   
     }, [])
 
-  const userData = useContext(UserContext);
-  const { openBarkboxModal } = useContext(BarkboxModalContext);
+ 
 
   return (
     <>

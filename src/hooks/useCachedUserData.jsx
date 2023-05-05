@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import axios from "axios";
 
 function useCachedUserData(url, headers, CACHE_KEY) {
-  const [userData, setUserData] = useState(null);
+  const [userData, setUserData] = useState({});
 
   useEffect(() => {
     const cachedUserData = localStorage.getItem(CACHE_KEY);
@@ -17,7 +17,7 @@ function useCachedUserData(url, headers, CACHE_KEY) {
         setUserData(response.data);
         localStorage.setItem(CACHE_KEY, JSON.stringify(response.data));
       } catch (err) {
-        console.error("Error fetching username:", err);
+        console.error("Error fetching user data:", err);
       }
     };
 

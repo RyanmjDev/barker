@@ -2,7 +2,9 @@ import React, { useState, useEffect, useRef, useContext } from 'react';
 import { BsChat, BsShare } from 'react-icons/bs';
 import { AiOutlineRetweet, AiFillHeart, AiOutlineHeart } from 'react-icons/ai';
 import { RxBookmark } from 'react-icons/rx';
+import { RiLinksFill } from 'react-icons/ri'
 import { getURL, allBarksURL } from '../utils/data';
+import copy from 'clipboard-copy';
 
 import Cookies from 'js-cookie';
 import axios from 'axios';
@@ -10,7 +12,7 @@ import axios from 'axios';
 import BarkboxModalContext from "../context/BarkboxModalContext";
 
 
-const Reaction = ({ barkId, content, size, likes,  user, date, isLikedByUser, replies }) => {
+const Reaction = ({ barkId, content, size, likes, displayName,  user, date, isLikedByUser, replies }) => {
 
   const [userLiked, setUserLiked] = useState(isLikedByUser);
   const [postLikes, setPostLikes] = useState(likes);
@@ -52,9 +54,17 @@ const Reaction = ({ barkId, content, size, likes,  user, date, isLikedByUser, re
 
   const handleReply = (event) => {
     event.stopPropagation();
-    openBarkboxModal({barkId: barkId, content: content, user: user, date: date})
-    //openBarkboxModal(content});
+    openBarkboxModal({barkId: barkId, content: content, displayName: displayName, user: user, date: date})
   }
+
+  const handleCopyLink = (event) => {
+    event.stopPropagation();
+    const url = `${window.location.origin}/bark/${barkId}`;
+    copy(url).then(() => {
+      // replace this later...
+      alert("Link copied to clipboard!");
+    });
+  };
 
   return (
     <div
@@ -96,7 +106,7 @@ const Reaction = ({ barkId, content, size, likes,  user, date, isLikedByUser, re
       </div>
 
       <div className='flex items-center'>
-        <BsShare className='mr-3 text-gray-500 hover:text-blue-500' />
+        <RiLinksFill className='mr-3 text-gray-500 hover:text-blue-500' onClick={handleCopyLink} />
       </div>
     </div>
   );

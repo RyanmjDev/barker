@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect } from "react";
 import BarkBox from "./Barkbox";
 import Bark from "./Bark";
 import BarkboxModalContext from "../context/BarkboxModalContext";
@@ -7,9 +7,11 @@ const BarkboxModal = () => {
   const { isBarkboxModalOpen, closeBarkboxModal, replyToBark } =
     useContext(BarkboxModalContext);
 
-  if (!isBarkboxModalOpen) {
-    return null;
-  }
+
+    useEffect(() => {
+      console.log(replyToBark);
+    }, [replyToBark])
+ 
 
   const handleClickOutside = (e) => {
     if (e.target === e.currentTarget) {
@@ -17,6 +19,11 @@ const BarkboxModal = () => {
     }
   };
 
+
+ if (!isBarkboxModalOpen) {
+    return null;
+  }
+  
   return (
     <>
       <div
@@ -32,7 +39,7 @@ const BarkboxModal = () => {
           {" "}
           {/* Adjust width here */}
           <div
-            className="relative flex flex-col w-full border-0 rounded-lg BarkboxModal-Dark
+            className="relative flex flex-col w-full border-0 rounded-lg modal-dark
           modal-animation"
           >
             <button
@@ -48,6 +55,7 @@ const BarkboxModal = () => {
                   <Bark
                     isReplyMode={true}
                     content={replyToBark.content ? replyToBark.content : ""}
+                    displayName={replyToBark.displayName ? replyToBark.displayName : ""}
                     user={replyToBark.user  ? replyToBark.user : ""}
                     date={replyToBark.date ? replyToBark.date : ""}
                     barkId={replyToBark.barkId}

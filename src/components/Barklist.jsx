@@ -43,6 +43,7 @@ const Barklist = ({ type, username, barkId, newBark}) => {
               barkId={bark._id}
               content={bark.content}
               user={bark.user.username}
+              displayName={bark.user.displayName}
               date={bark.createdAt}
               likes={bark.likes.length}
               isLikedByUser={bark.isLikedByUser}
@@ -68,6 +69,7 @@ const Barklist = ({ type, username, barkId, newBark}) => {
           barkId={newBark._id}
           content={newBark.content}
           user={newBark.user.username}
+          displayName={newBark.user.displayName}
           date={newBark.createdAt}
           likes={newBark.likes.length}
           isLikedByUser={newBark.isLikedByUser}

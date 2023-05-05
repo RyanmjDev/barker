@@ -17,7 +17,7 @@ import BarkboxModal from "./BarkboxModal";
 const Sidebar = ({userData, openBarkboxModal, unreadCount}) => {
 
 
-const navLinks = generateNavLinks(userData, unreadCount);
+const navLinks = generateNavLinks(userData.username, unreadCount);
 const location = useLocation();
 
 const [isSidebarOpen, setIsSidebarOpen] = useState(window.innerWidth >= 768); 
@@ -102,9 +102,9 @@ const [isSidebarOpen, setIsSidebarOpen] = useState(window.innerWidth >= 768);
               alt="Profile"
             />
             <div className="hidden lg:block">
-              <span className="font-bold">Night Sky Eikon</span>
+              <span className="font-bold">{userData.displayName}</span>
               <br />
-              <span className="text-gray-500">{userData}</span>
+              <span className="text-gray-500">{userData.username}</span>
             </div>
 
             <BsThreeDots className="hidden ml-4 lg:block" />

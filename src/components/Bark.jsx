@@ -10,7 +10,7 @@ import axios from 'axios';
 import ProfilePic from "./ProfilePic";
 import useDeleteBark from '../hooks/useDeleteBark';
 
-const Bark = ({ barkId, isReplyMode, content, user, date, likes, isLikedByUser, replies }) => {
+const Bark = ({ barkId, isReplyMode, content, user, displayName, date, likes, isLikedByUser, replies }) => {
   if (!content) {
     return null;
   }
@@ -44,7 +44,7 @@ const Bark = ({ barkId, isReplyMode, content, user, date, likes, isLikedByUser, 
           <div className="flex items-center">
             <Link to={`/profile/${user}`} onClick={handleLinkClick}>
               <span className="font-bold hover:underline truncate">
-                Night Sky Eikon
+               {displayName}
               </span>
             </Link>
             <span className="text-gray-500 ml-2">{`@${user}`}</span>
@@ -60,7 +60,7 @@ const Bark = ({ barkId, isReplyMode, content, user, date, likes, isLikedByUser, 
         </div>
       </div>
 
-      {!isReplyMode && <Reaction barkId={barkId} content={content} likes={likes} user={user} date={date} isLikedByUser={isLikedByUser} replies={replies} />}
+      {!isReplyMode && <Reaction barkId={barkId} content={content} likes={likes} displayName={displayName} user={user} date={date} isLikedByUser={isLikedByUser} replies={replies} />}
     </div>
   );
 };
