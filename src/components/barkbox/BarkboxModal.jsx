@@ -1,7 +1,7 @@
 import React, { useContext, useEffect } from "react";
 import BarkBox from "./Barkbox";
-import Bark from "./Bark";
-import BarkboxModalContext from "../context/BarkboxModalContext";
+import Bark from "../bark/Bark";
+import BarkboxModalContext from "../../context/BarkboxModalContext";
 
 const BarkboxModal = () => {
   const { isBarkboxModalOpen, closeBarkboxModal, replyToBark } =

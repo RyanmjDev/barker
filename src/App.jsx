@@ -1,11 +1,11 @@
 import React, { useEffect, useState, createContext, useContext } from "react";
-import Barkbox from "./components/Barkbox";
-import Bark from "./components/Bark";
+import Barkbox from "./components/barkbox/Barkbox";
+import Bark from "./components/bark/Bark";
 import Login from "./Pages/Login";
 import Register from "./Pages/Register";
-import Profile from "./components/Profile";
-import HighlightedBark from "./components/HighlightedBark";
-import VerticalDivider from "./components/VerticalDivider";
+import Profile from "./components/profile/Profile";
+import HighlightedBark from "./components/bark/HighlightedBark";
+import VerticalDivider from "./components/common/VerticalDivider";
 import { Outlet } from "react-router-dom";
 
 import { headers, getURL, usersURL, CACHE_KEY } from "./utils/data";
@@ -14,15 +14,15 @@ import axios from "axios";
 import UserContext from "./context/UserContext";
 import useCachedUserData from "./hooks/useCachedUserData";
 
-import BarkboxModal from "./components/BarkboxModal";
+import BarkboxModal from "./components/barkbox/BarkboxModal";
 
-import Navigation from "./components/Navigation";
+import Navigation from "./components/layout/Navigation";
 import {BarkboxModalProvider } from "./context/BarkboxModalContext";
 
 import socket from "./utils/socket"
 import Cookies from "js-cookie";
 import jwtDecode from 'jwt-decode';
-import EngagementModal from "./components/EngagementModal"; // Remove this later
+import EngagementModal from "./components/engagement/EngagementModal"; // Remove this later
 
 
 

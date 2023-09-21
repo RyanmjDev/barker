@@ -1,8 +1,8 @@
 import React, { useEffect, useState, useRef } from 'react';
-import Bark from './Bark';
+import Bark from '../bark/Bark';
 import Cookies from 'js-cookie';
 import axios from 'axios';
-import { getUrlByType, usersURL } from '../utils/data';
+import { getUrlByType, usersURL } from '../../utils/data';
 
 const Barklist = ({ type, username, barkId, newBark }) => {
   const [page, setPage] = useState(1);

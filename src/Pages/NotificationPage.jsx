@@ -5,8 +5,8 @@ import {getURL, notificationURL, readNotificationsURL} from '../utils/data'
 import { Link } from "react-router-dom";
 import { BsBell } from 'react-icons/bs';
 import {AiFillHeart  } from 'react-icons/ai';
-import ProfilePic from '../components/ProfilePic';
-import UserNotification from '../components/UserNotification';
+import ProfilePic from '../components/profile/ProfilePic';
+import UserNotification from '../components/notifications/UserNotification';
 
 import socket from "../utils/socket"
 import jwtDecode from 'jwt-decode';

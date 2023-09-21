@@ -3,13 +3,13 @@ import { BsChat, BsShare } from 'react-icons/bs';
 import { AiOutlineRetweet, AiFillHeart, AiOutlineHeart } from 'react-icons/ai';
 import { RxBookmark } from 'react-icons/rx';
 import { RiLinksFill } from 'react-icons/ri'
-import { getURL, allBarksURL } from '../utils/data';
+import { getURL, allBarksURL } from '../../utils/data';
 import copy from 'clipboard-copy';
 
 import Cookies from 'js-cookie';
 import axios from 'axios';
 
-import BarkboxModalContext from "../context/BarkboxModalContext";
+import BarkboxModalContext from "../../context/BarkboxModalContext";
 
 
 const Reaction = ({ barkId, content, size, likes, displayName,  user, date, isLikedByUser, replies }) => {

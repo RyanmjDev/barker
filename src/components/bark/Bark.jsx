@@ -1,14 +1,14 @@
 import React from "react";
 import { BsThreeDots } from "react-icons/bs";
-import Divider from "./Divider";
+import Divider from "../common/Divider";
 import Reaction from "./Reaction";
-import { timeSince } from "../utils/formatDate";
-import { allBarksURL } from "../utils/data";
+import { timeSince } from "../../utils/formatDate";
+import { allBarksURL } from "../../utils/data";
 import { Link } from "react-router-dom";
 import Cookies from 'js-cookie';
 import axios from 'axios';
-import ProfilePic from "./ProfilePic";
-import useDeleteBark from '../hooks/useDeleteBark';
+import ProfilePic from "../profile/ProfilePic";
+import useDeleteBark from '../../hooks/useDeleteBark';
 
 const Bark = React.forwardRef(({ barkId, isReplyMode, content, user, displayName, date, likes, isLikedByUser, replies }, ref) => {
   if (!content) {

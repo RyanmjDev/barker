@@ -4,12 +4,12 @@ import { useState } from 'react';
 import { BiImageAdd } from 'react-icons/bi';
 import { GrEmoji } from 'react-icons/gr';
 import EmojiPicker, {Emoji} from 'emoji-picker-react';
-import {getURL, allBarksURL, headers } from '../utils/data';
-import '../App.css'
+import {getURL, allBarksURL, headers } from '../../utils/data';
+import '../../App.css'
 
 
 import Cookies from "js-cookie";
-import AtLink from './AtLink';
+import AtLink from '../common/AtLink';
 
 
 const Barkbox = ({replyTo, replyId, closeModal, onNewBark}) => {

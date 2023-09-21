@@ -1,6 +1,6 @@
 import { FaHome, FaHashtag, FaBell, FaEnvelope, FaBookmark, FaListAlt, FaUser } from 'react-icons/fa';
 import {IoMdSettings} from 'react-icons/io'
-import NotificationIcon from '../components/NotificationIcon';
+import NotificationIcon from '../components/notifications/NotificationIcon'
 
 
 

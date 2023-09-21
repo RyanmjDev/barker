@@ -1,5 +1,5 @@
 import React, { useEffect, useState, useContext } from "react";
-import { generateNavLinks } from "../utils/navLinks";
+import { generateNavLinks } from "../../utils/navLinks";
 import { TbDog } from "react-icons/tb";
 
 import { BsThreeDots } from "react-icons/bs";
@@ -10,7 +10,7 @@ import axios from "axios";
 import { Link, useLocation } from 'react-router-dom';
 
 
-import BarkboxModal from "./BarkboxModal";
+import BarkboxModal from "../barkbox/BarkboxModal";
 
 
 

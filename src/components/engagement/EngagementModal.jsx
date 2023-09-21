@@ -1,6 +1,6 @@
 import React, { useContext, useEffect } from "react";
 import EngagementList from "./EngagementList";
-import BarkboxModalContext from "../context/BarkboxModalContext";
+import BarkboxModalContext from "../../context/BarkboxModalContext";
 
 const EngagementModal = () => {
     const { isEngagementModalOpen, closeEngagementModal } = useContext(BarkboxModalContext);

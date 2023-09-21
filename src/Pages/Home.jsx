@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import { FaHome } from 'react-icons/fa'
-import Barkbox from '../components/Barkbox'
-import Barklist from '../components/Barklist'
+import Barkbox from '../components/barkbox/Barkbox'
+import Barklist from '../components/barklist/Barklist'
 
 const Home = () => {
   // Home component represents the main landing page of the application.

@@ -1,19 +1,19 @@
 import React, { useState, useEffect, useContext } from "react";
 import { IoArrowBack } from "react-icons/io5";
-import Bark from "./Bark";
-import Barklist from "./Barklist";
+import Bark from "../bark/Bark";
+import Barklist from "../barklist/Barklist";
 import Cookies from "js-cookie";
 
-import { profileLinks } from "../utils/profileLinks";
-import { getURL, usersURL, profileURL } from "../utils/data";
+import { profileLinks } from "../../utils/profileLinks";
+import { getURL, usersURL, profileURL } from "../../utils/data";
 
-import "../App.css";
+import "../../app.css"
 import axios from "axios";
 import { useParams } from "react-router-dom";
-import UserContext from "../context/UserContext";
+import UserContext from "../../context/UserContext";
 import ProfilePic from "./ProfilePic";
 
-import BarkboxModalContext from "../context/BarkboxModalContext";
+import BarkboxModalContext from "../../context/BarkboxModalContext";
 
 const Profile = () => {
   const { openEngagementModal } = useContext(BarkboxModalContext);

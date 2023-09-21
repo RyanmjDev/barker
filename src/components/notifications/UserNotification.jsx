@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { AiFillHeart } from 'react-icons/ai';
-import ProfilePic from './ProfilePic';
+import ProfilePic from '../profile/ProfilePic'
 
 const UserNotification = ({ notification }) => {
 

@@ -1,10 +1,10 @@
 import React, { useState, useEffect, useContext } from 'react';
 import Reaction from './Reaction';
-import Divider from './Divider';
-import { formatDate } from '../utils/formatDate';
+import Divider from '../common/Divider';
+import { formatDate } from '../../utils/formatDate';
 import { Link } from 'react-router-dom';
 
-import BarkboxModalContext from "../context/BarkboxModalContext";
+import BarkboxModalContext from "../../context/BarkboxModalContext";
 
 const HighlightedBark = ({ barkId, bark }) => {
   const [loading, setLoading] = useState(true);
