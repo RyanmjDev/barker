@@ -1,5 +1,6 @@
 import React from 'react'
 import { Link } from "react-router-dom";
+import BlankProfile from '../../assets/blankprofile.webp'
 
 const ProfilePic = ({size, profileLink, onClick}) => {
 
@@ -25,7 +26,7 @@ const findSize = () => {
     <Link to={profileLink} onClick={onClick}>
             <img
             className={`rounded-full  ${findSize()}`}
-            src="https://pbs.twimg.com/profile_images/1564774195019632640/EYZ42tpe_400x400.jpg"
+            src={BlankProfile}
             alt="Profile"
         />
   </Link>

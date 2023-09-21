@@ -11,6 +11,7 @@ import { Link, useLocation } from 'react-router-dom';
 
 
 import BarkboxModal from "../barkbox/BarkboxModal";
+import ProfilePic from "../profile/ProfilePic";
 
 
 
@@ -95,12 +96,10 @@ const [isSidebarOpen, setIsSidebarOpen] = useState(window.innerWidth >= 768);
             </button>
           </div>
 
-          <div className="flex flex-start items-center fixed bottom-0 left-0 mb-4 ml-2 hover:bg-gray-300 rounded-full">
-            <img
-              className="w-12 h-12 rounded-full mr-4"
-              src="https://pbs.twimg.com/profile_images/1564774195019632640/EYZ42tpe_400x400.jpg"
-              alt="Profile"
-            />
+          <div className="flex flex-start items-center fixed bottom-0 left-0 mb-4 ml-2 hover:bg-gray-800 rounded-full">
+   
+          <ProfilePic size="medium"/>
+
             <div className="hidden lg:block">
               <span className="font-bold">{userData.displayName}</span>
               <br />

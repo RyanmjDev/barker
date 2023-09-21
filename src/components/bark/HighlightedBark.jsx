@@ -5,6 +5,7 @@ import { formatDate } from '../../utils/formatDate';
 import { Link } from 'react-router-dom';
 
 import BarkboxModalContext from "../../context/BarkboxModalContext";
+import ProfilePic from '../profile/ProfilePic';
 
 const HighlightedBark = ({ barkId, bark }) => {
   const [loading, setLoading] = useState(true);
@@ -30,11 +31,9 @@ const HighlightedBark = ({ barkId, bark }) => {
     <div className="p-4 rounded-lg w-full max-w-2xl mx-auto my-4">
       <Link to={`/profile/${userProfile?.username}`}>
         <div className="flex items-start">
-          <img
-            className="w-12 h-12 rounded-full mr-4"
-            src="https://pbs.twimg.com/profile_images/1564774195019632640/EYZ42tpe_400x400.jpg"
-            alt="Profile"
-          />
+
+        <ProfilePic size="medium"/>
+
           <div className="flex flex-col">
             <span className="font-semibold">{userProfile?.displayName}</span>
             <span className="text-gray-500">@{userProfile?.username}</span>

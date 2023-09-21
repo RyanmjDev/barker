@@ -5,6 +5,7 @@ import { BiImageAdd } from 'react-icons/bi';
 import { GrEmoji } from 'react-icons/gr';
 import EmojiPicker, {Emoji} from 'emoji-picker-react';
 import {getURL, allBarksURL, headers } from '../../utils/data';
+import ProfilePic from '../profile/ProfilePic';
 import '../../App.css'
 
 
@@ -86,11 +87,7 @@ const Barkbox = ({replyTo, replyId, closeModal, onNewBark}) => {
   </div>
 )}
       <div className="flex items-start">
-        <img
-          className="w-12 h-12 rounded-full mr-4"
-          src="https://pbs.twimg.com/profile_images/1564774195019632640/EYZ42tpe_400x400.jpg"
-          alt="Profile"
-        />
+      <ProfilePic size="medium"/>
         <div className="flex-grow">
      
           <textarea
