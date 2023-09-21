@@ -32,7 +32,7 @@ const Bark = React.forwardRef(({ barkId, isReplyMode, content, user, displayName
 
   return (
     <div
-      className="rounded-lg w-full max-w-2xl mx-auto my-1 cursor-pointer"
+      className="rounded-lg w-full max-w-2xl mx-auto my-1 px-4 cursor-pointer"
       onClick={handleClick}
       ref={ref}
     >

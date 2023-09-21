@@ -78,7 +78,7 @@ const Barkbox = ({replyTo, replyId, closeModal, onNewBark}) => {
   };
 
   return (
-    <div className="rounded-lg w-full max-w-2xl mx-auto my-4 relative">
+    <div className="rounded-lg w-full max-w-2xl mx-auto my-4 px-4 relative">
          
          {replyTo && (
   <div className="flex flex-box ml-16">
