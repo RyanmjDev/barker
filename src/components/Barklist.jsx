@@ -1,24 +1,15 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useRef } from 'react';
 import Bark from './Bark';
 import Cookies from 'js-cookie';
 import axios from 'axios';
-import {getURL, allBarksURL, usersURL } from '../utils/data';
+import { getUrlByType, usersURL } from '../utils/data';
 
-const Barklist = ({ type, username, barkId, newBark}) => {
+const Barklist = ({ type, username, barkId, newBark }) => {
+  const [page, setPage] = useState(1);
   const [barks, setBarks] = useState([]);
 
-  const getUrlByType = () => {
-    switch (type) {
-      case 'user':
-        return `${getURL(usersURL)}${username}/barks`;
-      case 'replies':
-        return `${getURL(allBarksURL)}${barkId}/replies`;
-      case 'likes':
-        return `${getURL(usersURL)}${username}/likes`;
-      default:
-        return getURL(allBarksURL);
-    }
-  };
+  const lastBarkElementRef = useRef(null);
+
 
   const fetchBarks = async () => {
     const token = Cookies.get('token');
@@ -31,13 +22,13 @@ const Barklist = ({ type, username, barkId, newBark}) => {
     };
 
     try {
-      const res = await axios.get(getUrlByType(), headers);
-      console.log(res.data);
+      const res = await axios.get(getUrlByType(page, type, username, barkId), headers);
       const barklist = res.data;
 
       if (Array.isArray(barklist)) {
-        setBarks(
-          barklist.map((bark) => (
+        const newBarks = barklist.map((bark, index) => {
+          const isLastBark = index === barklist.length - 1;
+          return (
             <Bark
               key={bark._id}
               barkId={bark._id}
@@ -48,9 +39,17 @@ const Barklist = ({ type, username, barkId, newBark}) => {
               likes={bark.likes.length}
               isLikedByUser={bark.isLikedByUser}
               replies={bark.replies.length}
+              ref={isLastBark ? lastBarkElementRef : null}
             />
-          ))
-        );
+          );
+        });
+
+        setBarks((prevBarks) => {
+          const uniqueBarks = newBarks.filter(
+            (newBark) => !prevBarks.some((prevBark) => prevBark.key === newBark.key)
+          );
+          return [...prevBarks, ...uniqueBarks];
+        });
       }
     } catch (error) {
       console.log(error);
@@ -59,7 +58,30 @@ const Barklist = ({ type, username, barkId, newBark}) => {
 
   useEffect(() => {
     fetchBarks();
-  }, []);
+  }, [page]);
+
+
+  // useEffect for infinite scroller
+  useEffect(() => {
+    if (!lastBarkElementRef.current) {
+      return;
+    }
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        if (entries[0].isIntersecting) {
+          setPage((prevPage) => prevPage + 1);
+        }
+      },
+      { threshold: 1 }
+    );
+
+    observer.observe(lastBarkElementRef.current);
+
+    return () => {
+      observer.disconnect();
+    };
+  }, [barks]);
 
   useEffect(() => {
     if (newBark) {
@@ -74,12 +96,11 @@ const Barklist = ({ type, username, barkId, newBark}) => {
           likes={newBark.likes.length}
           isLikedByUser={newBark.isLikedByUser}
           replies={newBark.replies.length}
-        />,
+        />, 
         ...barks,
       ]);
     }
   }, [newBark]);
-  
 
   return <>{barks}</>;
 };

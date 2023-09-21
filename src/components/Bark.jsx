@@ -10,7 +10,7 @@ import axios from 'axios';
 import ProfilePic from "./ProfilePic";
 import useDeleteBark from '../hooks/useDeleteBark';
 
-const Bark = ({ barkId, isReplyMode, content, user, displayName, date, likes, isLikedByUser, replies }) => {
+const Bark = React.forwardRef(({ barkId, isReplyMode, content, user, displayName, date, likes, isLikedByUser, replies }, ref) => {
   if (!content) {
     return null;
   }
@@ -34,6 +34,7 @@ const Bark = ({ barkId, isReplyMode, content, user, displayName, date, likes, is
     <div
       className="rounded-lg w-full max-w-2xl mx-auto my-1 cursor-pointer"
       onClick={handleClick}
+      ref={ref}
     >
       {!isReplyMode && <Divider />}
 
@@ -63,6 +64,6 @@ const Bark = ({ barkId, isReplyMode, content, user, displayName, date, likes, is
       {!isReplyMode && <Reaction barkId={barkId} content={content} likes={likes} displayName={displayName} user={user} date={date} isLikedByUser={isLikedByUser} replies={replies} />}
     </div>
   );
-};
+});
 
 export default Bark;
