@@ -8,20 +8,20 @@
 /*Dark Mode Testing*/
 
 .darkModeBackground {
-  background-color: #15202B;
+  background-color: #070b0e;
   color: white;
 }
 
 body {
-  background-color: #15202B;
+  background-color: #070b0e;
   color: white;
 }
 .modal-dark {
-  background-color: #15202B;
+  background-color: #070b0e;
   color: white;
 }
 textarea{
-    background-color: #15202B;
+  background-color: #070b0e;
   color: white;
 }
 
