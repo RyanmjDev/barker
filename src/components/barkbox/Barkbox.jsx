@@ -12,6 +12,7 @@ import '../../App.css'
 import Cookies from "js-cookie";
 
 import ReplyTo from './ReplyTo';
+import EmojiHandler from './EmojiHandler';
 
 
 const Barkbox = ({replyTo, replyId, closeModal, onNewBark}) => {
@@ -82,7 +83,7 @@ const Barkbox = ({replyTo, replyId, closeModal, onNewBark}) => {
     <div className="rounded-lg w-full max-w-2xl mx-auto my-4 px-4 relative">
          
          {replyTo &&  <ReplyTo replyTo={replyTo}/> }
-         
+
       <div className="flex items-start">
       <ProfilePic size="medium"/>
         <div className="flex-grow">
@@ -104,15 +105,9 @@ const Barkbox = ({replyTo, replyId, closeModal, onNewBark}) => {
                 accept="image/*"
                 className="hidden"
               />
-              <button onClick={handleEmoji}>
-                <GrEmoji size={"24px"} className="ml-4" />
-              </button>
 
-              {emojiOpen && (
-                <div className="absolute top-32 right-44">
-                  <EmojiPicker onEmojiClick={handleEmojiClick} width={"300px"} height={"350px"} />
-                </div>
-              )}
+              <EmojiHandler handleEmoji={handleEmoji} handleEmojiClick={handleEmojiClick} emojiOpen={emojiOpen}/>
+    
             </div>
             <button
               className="px-4 py-2 rounded-full bg-blue-400 text-white font-semibold disabled:opacity-50"

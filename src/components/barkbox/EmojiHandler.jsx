@@ -4,21 +4,7 @@ import EmojiPicker, {Emoji} from 'emoji-picker-react';
 
 import { useState } from 'react';
 
-const EmojiHandler = () => {
-    const [emojiOpen, setEmojiOpen] = useState(false);
-
-
-    const handleEmojiClick = (event, emojiObject) => {
-        console.log(event)
-        setBarkText(barkText + event.emoji);
-        setEmojiOpen(false);
-      };
-      
-      
-        const handleEmoji = () => {
-          setEmojiOpen(!emojiOpen);
-        };
-
+const EmojiHandler = ({handleEmoji, handleEmojiClick, emojiOpen}) => {
 
   return (
     <>
