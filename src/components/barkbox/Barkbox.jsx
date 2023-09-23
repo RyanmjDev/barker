@@ -1,7 +1,6 @@
 import React from 'react';
 import axios from 'axios';
 import { useState } from 'react';
-import { BiImageAdd } from 'react-icons/bi';
 import { GrEmoji } from 'react-icons/gr';
 import EmojiPicker, {Emoji} from 'emoji-picker-react';
 import {getURL, allBarksURL, headers } from '../../utils/data';
@@ -12,7 +11,7 @@ import '../../App.css'
 import Cookies from "js-cookie";
 
 import ReplyTo from './ReplyTo';
-import EmojiHandler from './EmojiHandler';
+import UtilityBar from './UtilityBar';
 
 
 const Barkbox = ({replyTo, replyId, closeModal, onNewBark}) => {
@@ -95,20 +94,10 @@ const Barkbox = ({replyTo, replyId, closeModal, onNewBark}) => {
             onChange={handleChange}
           />
           <div className="flex justify-between items-center">
-            <div className="flex items-center">
-              <label htmlFor="bark-image" className="cursor-pointer">
-                <BiImageAdd className="w-6 h-6 text-blue-400 hover:text-blue-600" />
-              </label>
-              <input
-                id="bark-image"
-                type="file"
-                accept="image/*"
-                className="hidden"
-              />
 
-              <EmojiHandler handleEmoji={handleEmoji} handleEmojiClick={handleEmojiClick} emojiOpen={emojiOpen}/>
-    
-            </div>
+          <UtilityBar handleEmoji={handleEmoji} handleEmojiClick={handleEmojiClick} emojiOpen={emojiOpen}/>
+
+
             <button
               className="px-4 py-2 rounded-full bg-blue-400 text-white font-semibold disabled:opacity-50"
               disabled={barkText === ''}
