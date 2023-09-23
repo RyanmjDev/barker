@@ -7,11 +7,11 @@ import {getURL, allBarksURL, headers } from '../../utils/data';
 import ProfilePic from '../profile/ProfilePic';
 import '../../App.css'
 
-
 import Cookies from "js-cookie";
 
 import ReplyTo from './ReplyTo';
 import UtilityBar from './UtilityBar';
+import SubmitButton from './SubmitButton';
 
 
 const Barkbox = ({replyTo, replyId, closeModal, onNewBark}) => {
@@ -93,19 +93,12 @@ const Barkbox = ({replyTo, replyId, closeModal, onNewBark}) => {
             value={barkText}
             onChange={handleChange}
           />
+
           <div className="flex justify-between items-center">
-
-          <UtilityBar handleEmoji={handleEmoji} handleEmojiClick={handleEmojiClick} emojiOpen={emojiOpen}/>
-
-
-            <button
-              className="px-4 py-2 rounded-full bg-blue-400 text-white font-semibold disabled:opacity-50"
-              disabled={barkText === ''}
-              onClick={handleBark}
-            >
-              Bark
-            </button>
+              <UtilityBar handleEmoji={handleEmoji} handleEmojiClick={handleEmojiClick} emojiOpen={emojiOpen}/>
+              <SubmitButton barkText={barkText} handleBark={handleBark}/>           
           </div>
+          
         </div>
       </div>
     </div>
