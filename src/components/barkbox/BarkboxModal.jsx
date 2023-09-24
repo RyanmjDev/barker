@@ -48,6 +48,7 @@ const BarkboxModal = () => {
             >
               &times;
             </button>
+            
             <div className="flex-auto p-6">
 
               {replyToBark ? (
@@ -67,6 +68,7 @@ const BarkboxModal = () => {
               )}
 
             </div>
+
           </div>
         </div>
       </div>

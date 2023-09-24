@@ -102,7 +102,9 @@ const Barklist = ({ type, username, barkId, newBark }) => {
     }
   }, [newBark]);
 
-  return <>{barks}</>;
+  return <>{barks}
+
+  </>;
 };
 
 export default Barklist;
