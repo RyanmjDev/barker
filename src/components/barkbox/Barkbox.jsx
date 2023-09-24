@@ -1,18 +1,13 @@
 import React from 'react';
-import axios from 'axios';
 import { useState } from 'react';
-import { GrEmoji } from 'react-icons/gr';
-import EmojiPicker, {Emoji} from 'emoji-picker-react';
-import {getURL, allBarksURL, headers } from '../../utils/data';
+
 import ProfilePic from '../profile/ProfilePic';
-import '../../App.css'
-
-import Cookies from "js-cookie";
-
 import ReplyTo from './ReplyTo';
 import UtilityBar from './UtilityBar';
 import SubmitButton from './SubmitButton';
+import submitBark from '../../api/submitBark';
 
+import '../../App.css'
 
 const Barkbox = ({replyTo, replyId, closeModal, onNewBark}) => {
   const [barkText, setBarkText] = useState('');
@@ -26,46 +21,22 @@ const Barkbox = ({replyTo, replyId, closeModal, onNewBark}) => {
 
   const handleBark = async (event) => {
     event.preventDefault();
-
-  const token = Cookies.get("token"); // Gets token for login
-  const headers = {
-    withCredentials: true,
-    headers: {
-      Authorization: `Bearer ${token}`,
-      "Content-Type": "application/json",
-    },
-  };
-  
-    try{
-      
-      // If we're replying, use the Reply route. Otherwise, we're just posting a normal bark
-      const url = replyTo ?  `${getURL(allBarksURL)}${replyId}` : getURL(allBarksURL);
-    
-      await axios
-    .post(url,
-    {
-      content: barkText 
-    },
-    headers)
-    .then(response => {
-      // Empty the Text Box
-      console.log(response.data)
+    try {
+      const responseData = await submitBark(barkText, replyTo, replyId);
+      console.log(responseData);
       setBarkText('');
-        if(closeModal)
-        {
-          closeModal(); // Can Generate Errors
-        }
-
-        if (onNewBark) {
-          onNewBark(response.data);
-        }
-    })
-    
-  } catch (error) {
-    console.error('Error creating bark:', error);
-  }
-     
+      if (closeModal) {
+        closeModal();
+      }
+      if (onNewBark) {
+        onNewBark(responseData);
+      }
+    } catch (error) {
+      // Note: implement a system to show the user the error
+      console.log(error);
+    }
   };
+
 
  const handleEmojiClick = (event, emojiObject) => {
   console.log(event)
