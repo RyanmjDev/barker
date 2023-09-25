@@ -1,21 +1,13 @@
 import axios from 'axios';
 import Cookies from "js-cookie";
-import { getURL, allBarksURL } from '../utils/data';
+import { api, allBarksURL } from '../utils/data';
 
  const submitBark = async (barkText, replyTo, replyId) => {
-  const token = Cookies.get("token");
-  const headers = {
-    withCredentials: true,
-    headers: {
-      Authorization: `Bearer ${token}`,
-      "Content-Type": "application/json",
-    },
-  };
-
-  const url = replyTo ? `${getURL(allBarksURL)}${replyId}` : getURL(allBarksURL);
+  
+  const url = replyTo ? `${allBarksURL}${replyId}` : allBarksURL;
 
   try {
-    const response = await axios.post(url, { content: barkText }, headers);
+    const response = await api.post(url, { content: barkText });
     return response.data;
   } catch (error) {
     console.error('Error creating bark:', error);

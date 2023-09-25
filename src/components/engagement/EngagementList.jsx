@@ -1,4 +1,5 @@
 import React from "react";
+import ProfilePic from "../profile/ProfilePic";
 
 
 const EngagementList = ({type}) => {
@@ -19,16 +20,13 @@ const EngagementList = ({type}) => {
           className="flex items-center justify-between mb-4 last:mb-0"
         >
           <div className="flex items-center">
-            <img
-              className="w-12 h-12 rounded-full mr-4"
-              src="https://pbs.twimg.com/profile_images/1564774195019632640/EYZ42tpe_400x400.jpg"
-              alt="Profile"
-            />
+        <ProfilePic size="medium"/>
             <div>
               <span className="font-bold">{user.displayName || user.username}</span>
               <br />
               <span className="text-gray-500">@{user.username}</span>
             </div>
+            
           </div>
           <button className="px-4 py-1 text-white font-bold bg-blue-500 rounded-full hover:bg-blue-600 ">
             Follow

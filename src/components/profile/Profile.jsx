@@ -14,6 +14,7 @@ import UserContext from "../../context/UserContext";
 import ProfilePic from "./ProfilePic";
 
 import BarkboxModalContext from "../../context/BarkboxModalContext";
+import VerticalDivider from "../common/VerticalDivider";
 
 const Profile = () => {
   const { openEngagementModal } = useContext(BarkboxModalContext);

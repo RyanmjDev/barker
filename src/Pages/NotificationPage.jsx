@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import Cookies from 'js-cookie';
 import axios from 'axios';
-import {getURL, notificationURL, readNotificationsURL} from '../utils/data'
+import {api, notificationURL, readNotificationsURL} from '../utils/data'
 import { Link } from "react-router-dom";
 import { BsBell } from 'react-icons/bs';
 import {AiFillHeart  } from 'react-icons/ai';
@@ -21,16 +21,8 @@ const NotificationsPage = () => {
   useEffect(() => {  
     const fetchNotifications = async () => {
       try {
-        const token = Cookies.get("token"); // Gets token for login
-        const headers = {
-          withCredentials: true,
-          headers: {
-            Authorization: `Bearer ${token}`,
-            "Content-Type": "application/json",
-          },
-        };
 
-      await axios.get(getURL(notificationURL), headers)
+      await api.get(notificationURL)
         .then((res)=> {
           console.log(res.data);
            setNotifications(res.data)
@@ -47,17 +39,9 @@ const NotificationsPage = () => {
 
   useEffect(() => {
     const markAllNotificationsAsRead = async () => {
-      const token = Cookies.get("token");
-      const headers = {
-        withCredentials: true,
-        headers: {
-          Authorization: `Bearer ${token}`,
-          "Content-Type": "application/json",
-        },
-      };
 
       try {
-        await axios.post(getURL(readNotificationsURL), {}, headers);
+        await api.post(readNotificationsURL, {});
         
         // Will set unread notifications back to after they've been read
         const decodedToken = jwtDecode(token);
