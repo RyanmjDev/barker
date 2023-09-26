@@ -26,6 +26,7 @@ const Reaction = ({ barkId, content, size, likes, displayName,  user, createdAt,
   }, [isLikedByUser]);
   
   const handleLike = async (event) => {
+    event.stopPropagation();
     try {
       await api.post(`${allBarksURL}${barkId}/like`, {});
       console.log('liked the bark!');

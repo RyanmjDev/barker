@@ -11,25 +11,20 @@ import ProfilePic from "../profile/ProfilePic";
 import useDeleteBark from '../../hooks/useDeleteBark';
 import Options from "./Options";
 
-const Bark = React.forwardRef(({ barkId, isReplyMode, content, user, displayName, date, likes, isLikedByUser, replies }, ref) => {
-  if (!content) {
-    return null;
-  }
+const Bark = React.forwardRef((props, ref) => {
+  const { barkId, isReplyMode, content, user, displayName, date, likes, isLikedByUser, replies } = props;
+
+  if (!content) return null;
 
   const deleteBark = useDeleteBark();
-
-  const handleClick = (event) => {
-    window.location.href = `/bark/${barkId}`;
-  };
-
-  const handleLinkClick = (event) => {
-    event.stopPropagation();
-  };
-
+  const handleClick = () => window.location.href = `/bark/${barkId}`;
+  const handleLinkClick = (event) => event.stopPropagation();
+  
   const handleDeleteClick = (event) => {
     event.stopPropagation();
     deleteBark(barkId);
   }
+
 
   return (
     <div
@@ -61,7 +56,7 @@ const Bark = React.forwardRef(({ barkId, isReplyMode, content, user, displayName
         </div>
       </div>
 
-      {!isReplyMode && <Reaction barkId={barkId} content={content} likes={likes} displayName={displayName} user={user} date={date} isLikedByUser={isLikedByUser} replies={replies} />}
+      {!isReplyMode && <Reaction {...props} />}
     </div>
   );
 });
