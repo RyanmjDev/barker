@@ -12,7 +12,7 @@ import axios from 'axios';
 import BarkboxModalContext from "../../context/BarkboxModalContext";
 
 
-const Reaction = ({ barkId, content, size, likes, displayName,  user, date, isLikedByUser, replies }) => {
+const Reaction = ({ barkId, content, size, likes, displayName,  user, createdAt, isLikedByUser, replies }) => {
 
   const [userLiked, setUserLiked] = useState(isLikedByUser);
   const [postLikes, setPostLikes] = useState(likes);
@@ -44,7 +44,7 @@ const Reaction = ({ barkId, content, size, likes, displayName,  user, date, isLi
 
   const handleReply = (event) => {
     event.stopPropagation();
-    openBarkboxModal({barkId: barkId, content: content, displayName: displayName, user: user, date: date})
+    openBarkboxModal({barkId: barkId, content: content, displayName: displayName, user: user, createdAt: createdAt})
   }
 
   const handleCopyLink = (event) => {

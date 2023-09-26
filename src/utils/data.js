@@ -14,7 +14,7 @@ const baseURL = 'http://localhost:3000'
 
 
 export const api = axios.create({
-  baseURL: baseURL, // Currently doesn't work login
+  baseURL: baseURL,
   withCredentials: true,
   headers: {
     'Content-Type': 'application/json',

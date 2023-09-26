@@ -9,6 +9,7 @@ import Cookies from 'js-cookie';
 import axios from 'axios';
 import ProfilePic from "../profile/ProfilePic";
 import useDeleteBark from '../../hooks/useDeleteBark';
+import Options from "./Options";
 
 const Bark = React.forwardRef(({ barkId, isReplyMode, content, user, displayName, date, likes, isLikedByUser, replies }, ref) => {
   if (!content) {
@@ -52,9 +53,8 @@ const Bark = React.forwardRef(({ barkId, isReplyMode, content, user, displayName
             <span className="text-gray-500 mx-2">·</span>
             <span className="text-gray-500">{timeSince(date)}</span>
 
-            {!isReplyMode && <div className="flex ml-auto">
-              <BsThreeDots onClick={handleDeleteClick} />
-            </div>}
+            <Options isReplyMode={isReplyMode} handleDeleteClick={handleDeleteClick}/>
+
           </div>
 
           <p className="mb-2 text-md">{content}</p>
