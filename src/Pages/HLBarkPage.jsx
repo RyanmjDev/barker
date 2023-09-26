@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import HighlightedBark from '../components/bark/HighlightedBark';
-import {getURL, allBarksURL } from '../utils/data';
+import {api, allBarksURL } from '../utils/data';
 import axios from 'axios';
 import Cookies from 'js-cookie'
 
@@ -18,17 +18,8 @@ const HLBarkPage = () => {
   useEffect(() => {
     const fetchBark = async () => {
       try {
-        const token = Cookies.get("token"); // Gets token for login
-        const headers = {
-           withCredentials: true,
-           headers: {
-             Authorization: `Bearer ${token}`,
-             "Content-Type": "application/json",
-           },
-         };
-  
 
-        await axios.get(`${getURL(allBarksURL)}${barkId}`, headers).then((res) => {
+         await api.get(`${allBarksURL}${barkId}`).then((res) => {
           const newBark = res.data;
           setBark(newBark);
         });

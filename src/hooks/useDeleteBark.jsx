@@ -1,22 +1,14 @@
 import { useCallback } from 'react';
 import Cookies from 'js-cookie';
 import axios from 'axios';
-import { getURL, allBarksURL } from '../utils/data';
+import { api, allBarksURL } from '../utils/data';
 
 
 const useDeleteBark = () => {
   const deleteBark = useCallback(async (barkId) => {
-    const token = Cookies.get("token");
-    const headers = {
-      withCredentials: true,
-      headers: {
-        Authorization: `Bearer ${token}`,
-        "Content-Type": "application/json",
-      },
-    };
 
     try {
-      await axios.delete(`${getURL(allBarksURL)}${barkId}`, headers);
+      await api.delete(`${allBarksURL}${barkId}`);
       console.log(`Deleted bark with id ${barkId}`);
     } catch (error) {
       console.error(`Error deleting bark with id ${barkId}: `, error);

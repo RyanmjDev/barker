@@ -5,7 +5,7 @@ import Barklist from "../barklist/Barklist";
 import Cookies from "js-cookie";
 
 import { profileLinks } from "../../utils/profileLinks";
-import { getURL, usersURL, profileURL } from "../../utils/data";
+import { api, usersURL, profileURL } from "../../utils/data";
 
 import "../../app.css"
 import axios from "axios";
@@ -31,17 +31,9 @@ const Profile = () => {
   const [selectedTab, setSelectedTab] = useState("user");
 
   const fetchProfile = async () => {
-    const token = Cookies.get("token"); // Gets token for login
-    const headers = {
-      withCredentials: true,
-      headers: {
-        Authorization: `Bearer ${token}`,
-        "Content-Type": "application/json",
-      },
-    };
 
     try {
-      await axios.get(`${getURL(profileURL)}${username}`, headers).then((res) => {
+      await api.get(`${profileURL}${username}`).then((res) => {
         console.log(res.data);
         setProfile(res.data.profile);
         setDisplayName(res.data.displayName);
@@ -60,16 +52,9 @@ const Profile = () => {
   }, []);
 
   const onFollow = async () => {
-    const token = Cookies.get("token"); // Gets token for login
-    const headers = {
-      withCredentials: true,
-      headers: {
-        Authorization: `Bearer ${token}`,
-        "Content-Type": "application/json",
-      },
-    };
-    await axios
-      .post(`${getURL(usersURL)}${username}/follow`, {}, headers)
+
+    await api
+      .post(`${usersURL}${username}/follow`, {})
       .then((res) => {
         console.log(res);
         setIsFollowing(!isFollowing);

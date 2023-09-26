@@ -42,13 +42,13 @@ export const getURL = (URL) => {
 export const getUrlByType = (page, type, username, barkId) => {
   switch (type) {
     case 'user':
-      return `${getURL(usersURL)}${username}/barks`;
+      return `${usersURL}${username}/barks`;
     case 'replies':
-      return `${getURL(allBarksURL)}${barkId}/replies`;
+      return `${allBarksURL}${barkId}/replies`;
     case 'likes':
-      return `${getURL(usersURL)}${username}/likes`;
+      return `${usersURL}${username}/likes`;
     default:
-      return getURL(`${allBarksURL}?page=${page}`);
+      return `${allBarksURL}?page=${page}`;
   }
 };
 

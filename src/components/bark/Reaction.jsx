@@ -3,7 +3,7 @@ import { BsChat, BsShare } from 'react-icons/bs';
 import { AiOutlineRetweet, AiFillHeart, AiOutlineHeart } from 'react-icons/ai';
 import { RxBookmark } from 'react-icons/rx';
 import { RiLinksFill } from 'react-icons/ri'
-import { getURL, allBarksURL } from '../../utils/data';
+import { api, allBarksURL } from '../../utils/data';
 import copy from 'clipboard-copy';
 
 import Cookies from 'js-cookie';
@@ -26,18 +26,8 @@ const Reaction = ({ barkId, content, size, likes, displayName,  user, date, isLi
   }, [isLikedByUser]);
   
   const handleLike = async (event) => {
-    event.stopPropagation();
-    const token = Cookies.get('token');
-    const headers = {
-      withCredentials: true,
-      headers: {
-        Authorization: `Bearer ${token}`,
-        'Content-Type': 'application/json',
-      },
-    };
-
     try {
-      await axios.post(`${getURL(allBarksURL)}${barkId}/like`, {}, headers);
+      await api.post(`${allBarksURL}${barkId}/like`, {});
       console.log('liked the bark!');
       setUserLiked(!userLiked);
       userLiked ? setPostLikes(postLikes - 1) : setPostLikes(postLikes + 1);

@@ -2,7 +2,7 @@ import React, { useEffect, useState, useRef } from 'react';
 import Bark from '../bark/Bark';
 import Cookies from 'js-cookie';
 import axios from 'axios';
-import { getUrlByType, usersURL } from '../../utils/data';
+import { api, getUrlByType, usersURL } from '../../utils/data';
 
 const Barklist = ({ type, username, barkId, newBark }) => {
   const [page, setPage] = useState(1);
@@ -12,17 +12,9 @@ const Barklist = ({ type, username, barkId, newBark }) => {
 
 
   const fetchBarks = async () => {
-    const token = Cookies.get('token');
-    const headers = {
-      withCredentials: true,
-      headers: {
-        Authorization: `Bearer ${token}`,
-        'Content-Type': 'application/json',
-      },
-    };
 
     try {
-      const res = await axios.get(getUrlByType(page, type, username, barkId), headers);
+      const res = await api.get(getUrlByType(page, type, username, barkId));
       const barklist = res.data;
 
       if (Array.isArray(barklist)) {

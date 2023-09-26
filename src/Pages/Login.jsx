@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import axios from 'axios';
 import Cookies from "js-cookie";
-import { getURL, loginURL, clearCachedUserData } from '../utils/data';
+import { api, loginURL, clearCachedUserData } from '../utils/data';
 
 
 // Login component provides a form for users to log in to their Barker account.
@@ -16,7 +16,7 @@ const Login = () => {
     clearCachedUserData();
     try {
 
-      const res = await axios.post(getURL(loginURL), { email, password });
+      const res = await api.post(loginURL, { email, password });
       const token = res.data.token;
       Cookies.set("token", token, { expires: 1 });
       axios.defaults.headers.common['Authorization'] = `Bearer ${token}`;
