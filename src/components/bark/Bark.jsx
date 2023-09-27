@@ -1,12 +1,9 @@
 import React from "react";
-import { BsThreeDots } from "react-icons/bs";
 import Divider from "../common/Divider";
 import Reaction from "./Reaction";
 import { timeSince } from "../../utils/formatDate";
 import { allBarksURL } from "../../utils/data";
 import { Link } from "react-router-dom";
-import Cookies from 'js-cookie';
-import axios from 'axios';
 import ProfilePic from "../profile/ProfilePic";
 import useDeleteBark from '../../hooks/useDeleteBark';
 import Options from "./Options";
