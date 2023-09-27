@@ -20,7 +20,7 @@ const findSize = () => {
 
     }
 }
-
+ 
   return (
     <>
     <Link to={profileLink} onClick={onClick}>
