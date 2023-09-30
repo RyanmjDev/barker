@@ -10,7 +10,7 @@ import axios from "axios";
 import { Link, useLocation } from 'react-router-dom';
 
 
-import BarkboxModal from "../barkbox/BarkboxModal";
+import BarkboxModal from "../barkboxModal/BarkboxModal";
 import ProfilePic from "../profile/ProfilePic";
 
 

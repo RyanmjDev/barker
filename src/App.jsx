@@ -14,7 +14,7 @@ import axios from "axios";
 import UserContext from "./context/UserContext";
 import useCachedUserData from "./hooks/useCachedUserData";
 
-import BarkboxModal from "./components/barkbox/BarkboxModal";
+import BarkboxModal from "./components/barkboxModal/BarkboxModal";
 
 import Navigation from "./components/layout/Navigation";
 import {BarkboxModalProvider } from "./context/BarkboxModalContext";

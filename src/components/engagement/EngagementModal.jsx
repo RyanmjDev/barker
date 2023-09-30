@@ -2,6 +2,9 @@ import React, { useContext, useEffect } from "react";
 import EngagementList from "./EngagementList";
 import BarkboxModalContext from "../../context/BarkboxModalContext";
 
+import ModalBackground from "../common/ModalBackground";
+import ModalCloseBtn from "../common/ModalCloseBtn";
+
 const EngagementModal = () => {
     const { isEngagementModalOpen, closeEngagementModal } = useContext(BarkboxModalContext);
 
@@ -23,11 +26,7 @@ const EngagementModal = () => {
 
   return (
     <>
-      <div
-        className="fixed inset-0 z-40 bg-gray-500 bg-opacity-10 backdrop-blur-sm"
-        style={{ width: "100vw", height: "100vh", filter: "blur(0)" }}
-        onClick={() => closeEngagementModal()}
-      ></div>
+    <ModalBackground closeModal={closeEngagementModal}/>
 
       <div
         className="fixed inset-0 z-50 flex items-start justify-center overflow-x-hidden overflow-y-hidden outline-none focus:outline-none mt-16"
@@ -38,12 +37,8 @@ const EngagementModal = () => {
             className="relative flex flex-col w-full border-0 rounded-lg modal-dark
           modal-animation"
           >
-            <button
-              className="absolute top-0 right-0 mt-2 mr-2 text-2xl font-semibold leading-none text-white bg-transparent border-0 text-opacity-50 focus:outline-none"
-              onClick={() => closeEngagementModal()}
-            >
-              &times;
-            </button>
+            <ModalCloseBtn closeModal={closeEngagementModal}/>
+
                     <div className="flex-auto p-2 text-xl">
                         Liked By
                     </div>

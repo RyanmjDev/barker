@@ -1,7 +1,9 @@
 import React, { useContext, useEffect } from "react";
-import BarkBox from "./Barkbox";
+import BarkBox from "../barkbox/Barkbox";
 import Bark from "../bark/Bark";
 import BarkboxModalContext from "../../context/BarkboxModalContext";
+import ModalBackground from "../common/ModalBackground";
+import ModalCloseBtn from "../common/ModalCloseBtn";
 
 const BarkboxModal = () => {
   const { isBarkboxModalOpen, closeBarkboxModal, replyToBark } =
@@ -26,11 +28,8 @@ const BarkboxModal = () => {
   
   return (
     <>
-      <div
-        className="fixed inset-0 z-40 bg-gray-500 bg-opacity-10 backdrop-blur-sm "
-        style={{ width: "100vw", height: "100vh", filter: "blur(0)" }}
-        onClick={() => closeBarkboxModal()}
-      ></div>
+    <ModalBackground closeModal={closeBarkboxModal}/>
+
       <div
         className="fixed inset-0 z-50 flex items-start justify-center overflow-x-hidden overflow-y-hidden outline-none focus:outline-none mt-16"
         onClick={handleClickOutside}
@@ -42,13 +41,9 @@ const BarkboxModal = () => {
             className="relative flex flex-col w-full border-0 rounded-lg modal-dark
           modal-animation"
           >
-            <button
-              className="absolute top-0 right-0 p-1 mt-2 mr-2 text-2xl font-semibold leading-none text-white bg-transparent border-0 text-opacity-50 focus:outline-none"
-              onClick={() => closeBarkboxModal()}
-            >
-              &times;
-            </button>
-            
+
+        <ModalCloseBtn closeModal={closeBarkboxModal}/>
+                      
             <div className="flex-auto p-6">
 
               {replyToBark ? (
