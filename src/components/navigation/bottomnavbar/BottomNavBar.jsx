@@ -1,5 +1,5 @@
 import { FaHome, FaSearch, FaBell, FaEnvelope, FaUser, FaPen } from 'react-icons/fa';
-import { generateBottomNavLinks } from '../../utils/navLinks';
+import { generateBottomNavLinks } from '../../../utils/navLinks';
 import { Link, useLocation } from 'react-router-dom';
 
 const BottomNavbar = ({ userData, openBarkboxModal, unreadCount }) => {

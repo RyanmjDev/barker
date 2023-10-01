@@ -16,7 +16,7 @@ import useCachedUserData from "./hooks/useCachedUserData";
 
 import BarkboxModal from "./components/bark/BarkboxModal";
 
-import Navigation from "./components/layout/Navigation";
+import Navigation from "./components/navigation/Navigation";
 import {BarkboxModalProvider } from "./context/BarkboxModalContext";
 
 import socket from "./utils/socket"

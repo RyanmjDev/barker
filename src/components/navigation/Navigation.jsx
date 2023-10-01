@@ -1,6 +1,6 @@
 import React, {useState, useEffect, useContext} from 'react'
-import Sidebar from './Sidebar';
-import BottomNavbar from './BottomNavBar';
+import Sidebar from './sidebar/Sidebar';
+import BottomNavbar from './bottomnavbar/BottomNavBar';
 
 import UserContext from "../../context/UserContext";
 import BarkboxModalContext from "../../context/BarkboxModalContext";
