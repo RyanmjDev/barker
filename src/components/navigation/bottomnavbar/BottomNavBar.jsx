@@ -19,7 +19,7 @@ border-gray-700 darkModeBackground md:hidden" style={{ zIndex: 1000 }}>
         {bottomNavLinks.map((navLink, index) => {
           const isActive = location.pathname === navLink.link;
           return (
-            <BottomNavItem isActive={isActive} id={navLink.id} link={navLink.link}
+            <BottomNavItem isActive={isActive} key={navLink.id} link={navLink.link}
               icon={navLink.icon} text={navLink.text}/>
           );
         })}

@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
-import HighlightedBark from '../components/bark/HighlightedBark';
+import HighlightedBark from '../components/highlightedbark/HighlightedBark';
 import {api, allBarksURL } from '../utils/data';
 import axios from 'axios';
 import Cookies from 'js-cookie'

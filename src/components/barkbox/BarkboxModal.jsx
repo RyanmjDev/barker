@@ -1,6 +1,6 @@
 import React, { useContext } from "react";
-import BarkBox from "../barkbox/Barkbox";
-import Bark from "./Bark";
+import BarkBox from "./Barkbox";
+import Bark from "../bark/Bark";
 import BarkboxModalContext from "../../context/BarkboxModalContext";
 import Modal from "../modal/modal";
 

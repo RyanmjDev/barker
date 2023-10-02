@@ -4,7 +4,7 @@ import Bark from "./components/bark/Bark";
 import Login from "./Pages/Login";
 import Register from "./Pages/Register";
 import Profile from "./components/profile/Profile";
-import HighlightedBark from "./components/bark/HighlightedBark";
+import HighlightedBark from "./components/highlightedbark/HighlightedBark";
 import VerticalDivider from "./components/common/VerticalDivider";
 import { Outlet } from "react-router-dom";
 
@@ -14,7 +14,7 @@ import axios from "axios";
 import UserContext from "./context/UserContext";
 import useCachedUserData from "./hooks/useCachedUserData";
 
-import BarkboxModal from "./components/bark/BarkboxModal";
+import BarkboxModal from "./components/barkbox/BarkboxModal";
 
 import Navigation from "./components/navigation/Navigation";
 import {BarkboxModalProvider } from "./context/BarkboxModalContext";
