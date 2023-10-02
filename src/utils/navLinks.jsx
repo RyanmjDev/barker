@@ -68,8 +68,8 @@ return navLinks;
 export const generateBottomNavLinks = (username, unreadCount) => {
   
   const HomeIcon = <FaHome size={24} className='mr-4 '/>;
-  const HashtagIcon = <FaHashtag size={24}  className='mr-4' />;
-  const BellIcon = <NotificationIcon unreadCount={unreadCount} />
+  const BookmarkIcon = <FaBookmark size={24}  className='mr-4' />;
+  const BellIcon = <NotificationIcon size={24} unreadCount={unreadCount} />
   const UserIcon = <FaUser size={24}  className='mr-4' />;
   const SettingsIcon = <IoMdSettings size={24}  className='mr-4'/>;
 
@@ -82,21 +82,21 @@ export const generateBottomNavLinks = (username, unreadCount) => {
   },
   {
     id: 1,
-    text: 'Explore',
-    icon: HashtagIcon,
+    text: 'Bookmarks',
+    icon: BookmarkIcon,
     link: '/'
   },
   {
     id: 2,
-    text: 'Notifications',
-    icon: BellIcon,
-    link: '/notifications'
-  },
-  {
-    id: 3,
     text: 'Profile',
     icon: UserIcon,
     link: `/profile/${username}`
+  },
+  {
+    id: 3,
+    text: 'Notifications',
+    icon: BellIcon,
+    link: '/notifications'
   },
   {
     id: 4,

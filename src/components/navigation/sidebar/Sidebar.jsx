@@ -4,7 +4,6 @@ import { generateNavLinks } from "../../../utils/navLinks";
 import axios from "axios";
 
 import { useLocation } from 'react-router-dom';
-
 import BarkboxModal from "../../bark/BarkboxModal";
 import BarkBtn from "./BarkBtn";
 import UserProfile from "./UserProfile";
