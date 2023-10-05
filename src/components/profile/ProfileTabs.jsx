@@ -1,6 +1,6 @@
 import React from 'react'
 
-const ProfileTabs = ({profileLinks, setSelectedTab}) => {
+const ProfileTabs = ({profileLinks, selectedTab, setSelectedTab}) => {
   return (
     <div className="flex w-full justify-evenly mt-6">
     {profileLinks.map((profileLink, index) => {

@@ -19,6 +19,7 @@ import ProfileBanner from "./ProfileBanner";
 import EditFollowBtn from "./EditFollowBtn";
 import FollowCount from "./FollowCount";
 import ProfileTabs from "./ProfileTabs";
+import ProfileUserHeading from "./ProfileUserHeading";
 
 const Profile = () => {
   const { openEngagementModal } = useContext(BarkboxModalContext);
@@ -78,14 +79,11 @@ const Profile = () => {
             isFollowing={isFollowing} onFollow={onFollow}/>
         </div>
 
-
-        <span className="text-2xl font-semibold">{displayName}</span>
-        <span className="text-gray-500">@{profileUser}</span>
-        <div className="mt-2">{profile}</div>
+        <ProfileUserHeading displayName={displayName} profileUser={profileUser} profile={profile}/>
 
 
       <FollowCount openEngagementModal={openEngagementModal} followers={followers} following={following}/>
-      <ProfileTabs profileLinks={profileLinks} setSelectedTab={setSelectedTab}/>
+      <ProfileTabs profileLinks={profileLinks} selectedTab={selectedTab} setSelectedTab={setSelectedTab}/>
       <Barklist type={selectedTab} username={username} key={selectedTab} />
       </div>
     </div>
