@@ -2,6 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { AiFillHeart } from 'react-icons/ai';
 import ProfilePic from '../profile/ProfilePic'
+import RecentUserReactions from './RecentUserReactions';
 
 const UserNotification = ({ notification }) => {
 
@@ -22,6 +23,7 @@ const UserNotification = ({ notification }) => {
   }
 
   return (
+    <Link to={`/bark/${notification.relatedBark?._id}`}>
     <li
       key={notification._id}
       className={`${
@@ -33,29 +35,19 @@ const UserNotification = ({ notification }) => {
           <AiFillHeart className="text-red-500 text-xl mr-4" />
         </div>
         <div>
-          <div className="flex flex-row">
-            <ProfilePic
-              size="small"
-              profileLink={`/profile/${notification.fromUser?.username}`}
-            />
-            <ProfilePic
-              size="small"
-              profileLink={`/profile/${notification.fromUser?.username}`}
-            />
-            <ProfilePic
-              size="small"
-              profileLink={`/profile/${notification.fromUser?.username}`}
-            />
-          </div>
+
+          <RecentUserReactions notification={notification}/>
+        
           <p>{getNotificationMessage()}</p>
           <p className="text-gray-500 text-sm">
-            <Link to={`/bark/${notification.relatedBark?._id}`}>
+        
               {notification.relatedBark?.content}
-            </Link>
+         
           </p>
         </div>
       </div>
     </li>
+    </Link>
   );
 };
 
