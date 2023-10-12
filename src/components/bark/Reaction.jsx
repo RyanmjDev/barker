@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useRef, useContext } from 'react';
 import { BsChat, BsShare } from 'react-icons/bs';
 import { AiOutlineRetweet, AiFillHeart, AiOutlineHeart } from 'react-icons/ai';
-import { RxBookmark } from 'react-icons/rx';
+import { RxBookmark, RxBookmarkFilled } from 'react-icons/rx';
 import { RiLinksFill } from 'react-icons/ri'
 import { api, allBarksURL } from '../../utils/data';
 import copy from 'clipboard-copy';
@@ -12,9 +12,10 @@ import axios from 'axios';
 import BarkboxModalContext from "../../context/BarkboxModalContext";
 
 
-const Reaction = ({ barkId, content, size, likes, displayName,  user, createdAt, isLikedByUser, replies }) => {
+const Reaction = ({ barkId, content, size, likes, displayName,  user, createdAt, isLikedByUser, isBookmarkedByUser, replies }) => {
 
   const [userLiked, setUserLiked] = useState(isLikedByUser);
+  const [userBookmarked, setUserBookmarked] = useState(isBookmarkedByUser);
   const [postLikes, setPostLikes] = useState(likes);
 
   const { openBarkboxModal } = useContext(BarkboxModalContext);
@@ -23,7 +24,9 @@ const Reaction = ({ barkId, content, size, likes, displayName,  user, createdAt,
 
   useEffect(() => {
     setUserLiked(isLikedByUser);
-  }, [isLikedByUser]);
+    setUserBookmarked(isBookmarkedByUser);
+  
+  }, [isLikedByUser, isBookmarkedByUser]);
   
   const handleLike = async (event) => {
     event.stopPropagation();
@@ -46,6 +49,17 @@ const Reaction = ({ barkId, content, size, likes, displayName,  user, createdAt,
   const handleReply = (event) => {
     event.stopPropagation();
     openBarkboxModal({barkId: barkId, content: content, displayName: displayName, user: user, createdAt: createdAt})
+  }
+
+  const handleBookmark = async (event) =>   {
+    event.stopPropagation();
+    try {
+      await api.post(`${allBarksURL}${barkId}/bookmark`, {});
+      setUserBookmarked(!userBookmarked)
+      console.log("bookmarked the bark!")
+    } catch(error) {
+      console.error('Error bookmarking bark:', error)
+    }
   }
 
   const handleCopyLink = (event) => {
@@ -93,9 +107,11 @@ const Reaction = ({ barkId, content, size, likes, displayName,  user, createdAt,
       </div>
 
       <div className='flex items-center'>
-        <RxBookmark className='mr-3 text-gray-500 hover:text-orange-500' />
+       {userBookmarked ?  <RxBookmarkFilled onClick={handleBookmark} className='mr-3 text-gray-500 hover:text-orange-500' />
+       :
+       <RxBookmark onClick={handleBookmark} className='mr-3 text-gray-500 hover:text-orange-500' />}
       </div>
-
+  
       <div className='flex items-center'>
         <RiLinksFill className='mr-3 text-gray-500 hover:text-blue-500' onClick={handleCopyLink} />
       </div>

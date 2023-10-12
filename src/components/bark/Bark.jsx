@@ -9,7 +9,7 @@ import useDeleteBark from '../../hooks/useDeleteBark';
 import Options from "./Options";
 
 const Bark = React.forwardRef((props, ref) => {
-  const { barkId, isReplyMode, content, user, displayName, date, likes, isLikedByUser, replies } = props;
+  const { barkId, isReplyMode, content, user, displayName, date, likes, isLikedByUser, isBookmarkedByUser, replies } = props;
 
   if (!content) return null;
 

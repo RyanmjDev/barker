@@ -20,6 +20,7 @@ const Barklist = ({ type, username, barkId, newBark }) => {
       if (Array.isArray(barklist)) {
         const newBarks = barklist.map((bark, index) => {
           const isLastBark = index === barklist.length - 1;
+          console.log(bark);
           return (
             <Bark
               key={bark._id}
@@ -30,6 +31,7 @@ const Barklist = ({ type, username, barkId, newBark }) => {
               date={bark.createdAt}
               likes={bark.likes.length}
               isLikedByUser={bark.isLikedByUser}
+              isBookmarkedByUser={bark.isBookmarkedByUser}
               replies={bark.replies.length}
               ref={isLastBark ? lastBarkElementRef : null}
             />

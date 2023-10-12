@@ -11,6 +11,8 @@ import UserNotification from '../components/notifications/UserNotification';
 import socket from "../utils/socket"
 import jwtDecode from 'jwt-decode';
 
+import { token } from '../utils/data';
+
 // Page that displays a User's Notifications
 const NotificationsPage = () => {
   const [notifications, setNotifications] = useState([]);
