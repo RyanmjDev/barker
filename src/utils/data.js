@@ -47,6 +47,8 @@ export const getUrlByType = (page, type, username, barkId) => {
       return `${allBarksURL}${barkId}/replies`;
     case 'likes':
       return `${usersURL}${username}/likes`;
+    case 'bookmarks':
+      return `${usersURL}${username}/bookmarks`;
     default:
       return `${allBarksURL}?page=${page}`;
   }
