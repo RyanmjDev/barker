@@ -14,7 +14,7 @@ const BookmarkPage = () => {
       </div>
       <hr className="my-4" />
       {/* NEEDS FIXING   */}
-      <Barklist type={'bookmarks'} username={"user2"} />  
+      <Barklist type={'bookmarks'}/>  
       {/* !!!! */}
     </div>
   );

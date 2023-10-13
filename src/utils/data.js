@@ -48,7 +48,8 @@ export const getUrlByType = (page, type, username, barkId) => {
     case 'likes':
       return `${usersURL}${username}/likes`;
     case 'bookmarks':
-      return `${usersURL}${username}/bookmarks`;
+      // There's no / before bookmarks due to URL string. Fix this later for consistency.
+      return `${usersURL}bookmarks`;
     default:
       return `${allBarksURL}?page=${page}`;
   }
