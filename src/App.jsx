@@ -23,6 +23,7 @@ import socket from "./utils/socket"
 import Cookies from "js-cookie";
 import jwtDecode from 'jwt-decode';
 import EngagementModal from "./components/engagement/EngagementModal"; // Remove this later
+import EditProfileModal from "./components/profile/EditProfileModal/EditProfileModal";
 
 
 
@@ -55,6 +56,7 @@ function App() {
             <Navigation />
             <EngagementModal/>
             <BarkboxModal  />
+            <EditProfileModal/>
           </div>
         </div>
         <Outlet />

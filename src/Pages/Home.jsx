@@ -3,6 +3,7 @@ import { FaHome } from 'react-icons/fa'
 import Barkbox from '../components/barkbox/Barkbox'
 import Barklist from '../components/barklist/Barklist'
 import VerticalDivider from '../components/common/VerticalDivider'
+import Divider from '../components/common/Divider'
 
 
 
@@ -26,7 +27,6 @@ const Home = () => {
         <hr className="my-4" />
       </div>
 
-    
     <Barkbox onNewBark={handleNewBark}/>
     <Barklist newBark={newBark}/>
     <VerticalDivider/>

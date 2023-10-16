@@ -76,7 +76,7 @@ const Profile = () => {
         <div className="flex justify-between w-full">
             <ProfilePic size="large"/>
             <EditFollowBtn username={userData.username} profileUser={profileUser}
-            isFollowing={isFollowing} onFollow={onFollow}/>
+            isFollowing={isFollowing} onFollow={onFollow} />
         </div>
 
         <ProfileUserHeading displayName={displayName} profileUser={profileUser} profile={profile}/>

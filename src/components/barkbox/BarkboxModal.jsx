@@ -2,7 +2,7 @@ import React, { useContext } from "react";
 import BarkBox from "./Barkbox";
 import Bark from "../bark/Bark";
 import BarkboxModalContext from "../../context/BarkboxModalContext";
-import Modal from "../modal/modal";
+import Modal from "../modal/Modal";
 
 const BarkboxModal = () => {
   const { isBarkboxModalOpen, closeBarkboxModal, replyToBark } = useContext(BarkboxModalContext);

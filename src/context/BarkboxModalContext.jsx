@@ -5,6 +5,7 @@ const BarkboxModalContext = createContext();
 export const BarkboxModalProvider = ({ children }) => {
   const [isBarkboxModalOpen, setIsBarkboxModalOpen] = useState(false);
   const [isEngagementModalOpen, setIsEngagementModalOpen] = useState(false);
+  const [isEditProfileModalOpen, setIsEditProfileModalOpen] = useState(false);
   const [replyToBark, setReplyToBark] = useState(null)
 
   const openBarkboxModal = (barkData) => {
@@ -27,6 +28,15 @@ export const BarkboxModalProvider = ({ children }) => {
     setIsEngagementModalOpen(false);
   }
 
+  
+  const openEditProfileModal = () => {
+    setIsEditProfileModalOpen(true);
+}
+
+const closeEditProfileModal = () => {
+    setIsEditProfileModalOpen(false); 
+}
+
  
 
 
@@ -40,6 +50,9 @@ export const BarkboxModalProvider = ({ children }) => {
       isEngagementModalOpen,
       openEngagementModal,
       closeEngagementModal,
+      isEditProfileModalOpen,
+      openEditProfileModal,
+      closeEditProfileModal,
       }}>
       {children}
     </BarkboxModalContext.Provider>

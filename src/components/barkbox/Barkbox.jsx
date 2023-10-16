@@ -8,6 +8,7 @@ import SubmitButton from './SubmitButton';
 import submitBark from '../../api/submitBark';
 
 import '../../App.css'
+import Divider from '../common/Divider';
 
 const Barkbox = ({replyTo, replyId, closeModal, onNewBark}) => {
   const [barkText, setBarkText] = useState('');
@@ -72,6 +73,7 @@ const Barkbox = ({replyTo, replyId, closeModal, onNewBark}) => {
           
         </div>
       </div>
+      <Divider/>
     </div>
   );
 };
