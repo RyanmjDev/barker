@@ -29,7 +29,7 @@ const Bark = React.forwardRef((props, ref) => {
       onClick={handleClick}
       ref={ref}
     >
-      {!isReplyMode && <Divider />}
+  
 
       <div className="flex items-start">
         <ProfilePic size="medium" profileLink={`/profile/${user}`} onClick={handleLinkClick} />
@@ -54,6 +54,8 @@ const Bark = React.forwardRef((props, ref) => {
       </div>
 
       {!isReplyMode && <Reaction {...props} />}
+      {!isReplyMode && <Divider />}
+      
     </div>
   );
 });

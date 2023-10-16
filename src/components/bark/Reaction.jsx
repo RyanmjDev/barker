@@ -107,7 +107,7 @@ const Reaction = ({ barkId, content, size, likes, displayName,  user, createdAt,
       </div>
 
       <div className='flex items-center'>
-       {userBookmarked ?  <RxBookmarkFilled onClick={handleBookmark} className='mr-3 text-gray-500 hover:text-orange-500' />
+       {userBookmarked ?  <RxBookmarkFilled onClick={handleBookmark} className='mr-3 text-orange-500 hover:text-orange-500' />
        :
        <RxBookmark onClick={handleBookmark} className='mr-3 text-gray-500 hover:text-orange-500' />}
       </div>
