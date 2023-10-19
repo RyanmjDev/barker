@@ -14,8 +14,6 @@ const [bio, setBio] = useState('');
 const [location, setLocation] = useState('');
 const [website, setWebsite] = useState('');
 
-const [isFocused, setIsFocused] = useState(false);
-
 return (
   <Modal isOpen={isEditProfileModalOpen} closeModal={closeEditProfileModal} title="Edit Profile">
     <div className="flex flex-col items-start px-2">
@@ -32,13 +30,26 @@ return (
     onChange={(e) => setName(e.target.value)}
   />
 
+<LabeledInput
+    label="Bio"
+    maxLength={160}
+    value={bio}
+    onChange={(e) => setBio(e.target.value)}
+  />
+
     <LabeledInput 
       label="Location"
       maxLength={30}
       value={location}
-      onChange={(e) => setName(e.target.value)}
+      onChange={(e) => setLocation(e.target.value)}
     />
 
+<LabeledInput 
+      label="Website"
+      maxLength={100}
+      value={website}
+      onChange={(e) => setWebsite(e.target.value)}
+    />
 
 
   </Modal>
