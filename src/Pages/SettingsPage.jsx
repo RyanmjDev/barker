@@ -10,6 +10,11 @@ const SettingsPage = () => {
       <h1 className="text-lg font-bold">Settings</h1>
     </div>
     <hr className="my-4" />
+   
+    <div>Change Password</div>
+    <div>Change email</div>
+    <div>Dark Mode</div>
+
     </div>
   )
 }
