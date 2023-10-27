@@ -23,6 +23,7 @@ const LabeledInput = ({ label, maxLength, value, onChange }) => {
           type="text"
           value={value}
           onChange={onChange}
+          maxLength={maxLength}
           onFocus={() => setIsFocused(true)}
           onBlur={() => setIsFocused(false)}
        />
@@ -35,6 +36,7 @@ const LabeledInput = ({ label, maxLength, value, onChange }) => {
        cols="30" 
        rows="2"
        value={value}
+       maxLength={maxLength}
        onChange={onChange}
        onFocus={() => setIsFocused(true)}
        onBlur={() => setIsFocused(false)}

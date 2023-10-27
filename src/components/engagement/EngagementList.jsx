@@ -3,7 +3,7 @@ import ProfilePic from "../profile/ProfilePic";
 
 
 const EngagementList = ({type}) => {
-  // Filler user data
+  // Filler user data. This will later be replaced with an API call
   const users = [
     { id: 1, username: "user1", displayName: "User One" },
     { id: 2, username: "user2", displayName: "User Two" },
@@ -28,9 +28,10 @@ const EngagementList = ({type}) => {
             </div>
             
           </div>
-          <button className="px-4 py-1 text-white font-bold bg-blue-500 rounded-full hover:bg-blue-600 ">
-            Follow
-          </button>
+          
+            <button className="px-4 py-1 text-white font-bold bg-blue-500 rounded-full hover:bg-blue-600 ">
+              Follow
+            </button>
         </div>
       ))}
     </div>
